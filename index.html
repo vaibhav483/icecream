@@ -446,9 +446,15 @@ footer{background:var(--text);color:rgba(255,255,255,.8);padding:28px 18px 110px
 <div class="closed-ov" id="closed-ov" style="display:none">
   <div class="closed-card">
     <div class="closed-e">🌙</div>
-    <div class="closed-ttl" id="closed-ttl">We're Closed</div>
+    <div class="closed-ttl" id="closed-ttl">We're Closed Right Now</div>
     <div class="closed-msg" id="closed-msg">We'll be back soon! Our timings are<br>🕐 11:00 AM – 2:45 PM<br>🕔 5:00 PM – 9:00 PM</div>
-    <button class="continue-btn" onclick="document.getElementById('closed-ov').style.display='none'">Browse Menu Anyway</button>
+    <div style="margin-top:16px;background:rgba(233,30,99,.08);border-radius:12px;padding:12px;font-size:12px;color:var(--primary);font-weight:700">
+      🚫 Ordering is disabled outside business hours
+    </div>
+    <div style="display:flex;gap:9px;margin-top:14px;justify-content:center">
+      <a href="tel:9553199868" style="background:var(--primary);color:#fff;padding:10px 18px;border-radius:50px;font-weight:800;font-size:13px;text-decoration:none">📞 Call Us</a>
+      <a href="https://wa.me/919553199868" target="_blank" style="background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;padding:10px 18px;border-radius:50px;font-weight:800;font-size:13px;text-decoration:none">💬 WhatsApp</a>
+    </div>
   </div>
 </div>
 
@@ -859,16 +865,31 @@ function isShopOpen() {
 function checkOpen() {
   const open = isShopOpen();
   updateOpenBadge(open);
+  // Show/hide closed banner
+  let banner = document.getElementById('closed-banner');
   if (!open) {
+    if (!banner) {
+      banner = document.createElement('div');
+      banner.id = 'closed-banner';
+      banner.style.cssText = 'background:#FFEBEE;color:#C62828;text-align:center;padding:10px 16px;font-size:12.5px;font-weight:800;border-bottom:2px solid #FFCDD2;display:flex;align-items:center;justify-content:center;gap:8px';
+      banner.innerHTML = `<span>🔒</span><span id="closed-banner-txt">Shop is closed — Ordering disabled until next session</span>`;
+      document.querySelector('.timings').after(banner);
+    }
     const now = new Date();
     const h = now.getHours();
-    let msg = 'We\'ll be back soon! Timings: 11AM–2:45PM & 5PM–9PM';
-    if (h < 11) msg = `Opens at 11:00 AM today! Come back soon 🍦`;
-    else if (h >= 15 && h < 17) msg = `Opens again at 5:00 PM today! 🍦`;
-    else if (h >= 21) msg = `Opens tomorrow at 11:00 AM! 🌅`;
-    document.getElementById('closed-msg').innerHTML = msg + '<br><br>🕐 11:00 AM – 2:45 PM<br>🕔 5:00 PM – 9:00 PM';
-    document.getElementById('closed-ov').style.display = 'flex';
+    let next = h < 11 ? '11:00 AM' : (h >= 15 && h < 17) ? '5:00 PM' : '11:00 AM tomorrow';
+    document.getElementById('closed-banner-txt').textContent = `🔒 Shop is closed — Opens at ${next}`;
+    // Show closed overlay only on first load
+    if (!sessionStorage.getItem('closedShown')) {
+      document.getElementById('closed-ov').style.display = 'flex';
+      sessionStorage.setItem('closedShown', '1');
+    }
+  } else {
+    if (banner) banner.remove();
+    document.getElementById('closed-ov').style.display = 'none';
+    sessionStorage.removeItem('closedShown');
   }
+  renderMenu(activeCat, document.getElementById('search-inp')?.value || '');
 }
 
 function updateOpenBadge(open) {
@@ -937,7 +958,7 @@ function renderMenu(cat = 'all', search = '') {
         <div class="card-foot">
           <div class="card-price">₹${item.price}<small>${item.size ? ' / ' + item.size : ''}</small></div>
           ${qty === 0
-            ? `<button class="add-btn" onclick="addToCart('${item.id}')" ${item.oos ? 'disabled' : ''}>+</button>`
+            ? `<button class="add-btn" onclick="addToCart('${item.id}')" ${item.oos || !isShopOpen() ? 'disabled' : ''} title="${!isShopOpen() ? 'Shop is closed' : ''}">${isShopOpen() ? '+' : '🔒'}</button>`
             : `<div class="qty-ctrl">
                 <button class="qty-b" onclick="changeQty('${item.id}',-1)">−</button>
                 <span class="qty-n">${qty}</span>
@@ -968,6 +989,11 @@ function renderMenu(cat = 'all', search = '') {
 // CART MANAGEMENT
 // ═══════════════════════════════════════════════
 function addToCart(id) {
+  if (!isShopOpen()) {
+    showToast('🚫 Shop is closed! Opens at next session');
+    document.getElementById('closed-ov').style.display = 'flex';
+    return;
+  }
   const item = MENU.items.find(i => i.id === id);
   if (!item || item.oos) return;
   const existing = cart.find(c => c.id === id);
@@ -1000,6 +1026,11 @@ function cartTotal() {
 }
 
 function openCart() {
+  if (!isShopOpen()) {
+    showToast('🚫 Shop is closed right now!');
+    document.getElementById('closed-ov').style.display = 'flex';
+    return;
+  }
   if (document.getElementById('cart-ov').classList.contains('open')) return;
   document.getElementById('cart-ov').classList.add('open');
   document.getElementById('cart-drawer').classList.add('open');
@@ -1210,6 +1241,12 @@ function clearSearch() {
 // ORDER FLOW (Multi-step)
 // ═══════════════════════════════════════════════
 function startOrder() {
+  if (!isShopOpen()) {
+    showToast('🚫 Shop is closed! Cannot place order now');
+    closeCartDrawer();
+    document.getElementById('closed-ov').style.display = 'flex';
+    return;
+  }
   if (cart.length === 0) { showToast('Add items first!'); return; }
   closeCartDrawer();
   orderData = {};
