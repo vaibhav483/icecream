@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel — Sai Bhavani Arun Ice Creams</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:#0F0A0D;color:#F5F0F2;min-height:100vh}
+button,input,textarea,select{font-family:inherit}
+
+/* LOGIN */
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1A0D14,#2D0B1F)}
+.login-card{background:#1E1014;border:1px solid #3A1525;border-radius:24px;padding:40px 32px;width:100%;max-width:380px;text-align:center}
+.login-logo{font-size:52px;margin-bottom:10px}
+.login-ttl{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#E91E63;margin-bottom:4px}
+.login-sub{font-size:12px;color:#8D6E63;margin-bottom:28px}
+.l-inp{width:100%;background:#0F0A0D;border:2px solid #3A1525;border-radius:12px;padding:13px 16px;font-size:14px;color:#F5F0F2;outline:none;margin-bottom:13px;transition:border .3s}
+.l-inp:focus{border-color:#E91E63}
+.l-btn{width:100%;background:linear-gradient(135deg,#E91E63,#C2185B);color:#fff;border:none;padding:14px;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;transition:all .3s}
+.l-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(233,30,99,.4)}
+.l-err{color:#F44336;font-size:12.5px;margin-top:8px;display:none}
+
+/* LAYOUT */
+.admin-wrap{display:flex;min-height:100vh}
+.sidebar{width:240px;background:#140810;border-right:1px solid #2D1020;flex-shrink:0;position:fixed;top:0;left:0;bottom:0;overflow-y:auto;z-index:100;transition:transform .3s}
+.sidebar.hidden{transform:translateX(-240px)}
+.main{flex:1;margin-left:240px;transition:margin .3s}
+.main.full{margin-left:0}
+@media(max-width:768px){.sidebar{transform:translateX(-240px)}.sidebar.mob-open{transform:translateX(0)}.main{margin-left:0}}
+
+/* SIDEBAR */
+.sb-head{padding:20px 18px;border-bottom:1px solid #2D1020}
+.sb-logo{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#E91E63}
+.sb-sub{font-size:10px;color:#6D4C5C;margin-top:2px}
+.sb-nav{padding:12px 0}
+.sb-item{display:flex;align-items:center;gap:10px;padding:11px 18px;cursor:pointer;border:none;background:none;color:#8D6E63;font-size:13.5px;font-weight:700;width:100%;text-align:left;transition:all .25s;border-left:3px solid transparent}
+.sb-item:hover{color:#F5F0F2;background:rgba(233,30,99,.08)}
+.sb-item.active{color:#E91E63;background:rgba(233,30,99,.12);border-left-color:#E91E63}
+.sb-item span:first-child{font-size:18px;flex-shrink:0}
+.sb-div{height:1px;background:#2D1020;margin:8px 18px}
+.sb-logout{margin:12px;background:rgba(244,67,54,.1);border:1px solid rgba(244,67,54,.3);color:#F44336;border-radius:10px;padding:10px;font-weight:700;font-size:13px;cursor:pointer;width:calc(100%-24px);transition:all .3s}
+.sb-logout:hover{background:rgba(244,67,54,.2)}
+
+/* TOP BAR */
+.topbar{background:#140810;border-bottom:1px solid #2D1020;padding:13px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:90}
+.tb-left{display:flex;align-items:center;gap:12px}
+.menu-tog{background:none;border:none;color:#F5F0F2;font-size:22px;cursor:pointer;padding:4px}
+.tb-ttl{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#F5F0F2}
+.tb-right{display:flex;align-items:center;gap:10px}
+.open-tog{display:flex;align-items:center;gap:8px;background:#1E1014;border:1px solid #3A1525;border-radius:50px;padding:7px 14px;cursor:pointer;transition:all .3s}
+.open-tog.open{border-color:#4CAF50;background:rgba(76,175,80,.1)}
+.open-tog.closed{border-color:#F44336;background:rgba(244,67,54,.1)}
+.tog-dot{width:10px;height:10px;border-radius:50%}
+.open-tog.open .tog-dot{background:#4CAF50;animation:pulse 1.5s infinite}
+.open-tog.closed .tog-dot{background:#F44336}
+.tog-lbl{font-size:12px;font-weight:800}
+.open-tog.open .tog-lbl{color:#4CAF50}
+.open-tog.closed .tog-lbl{color:#F44336}
+
+/* PAGES */
+.page{display:none;padding:20px}
+.page.active{display:block;animation:fadeUp .3s ease}
+
+/* STAT CARDS */
+.stats-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-bottom:20px}
+@media(min-width:600px){.stats-grid{grid-template-columns:repeat(4,1fr)}}
+.stat-card{background:#1E1014;border:1px solid #2D1020;border-radius:16px;padding:16px;transition:all .3s}
+.stat-card:hover{border-color:#E91E63;transform:translateY(-2px)}
+.stat-ico{font-size:28px;margin-bottom:8px}
+.stat-val{font-size:26px;font-weight:900;color:#E91E63;line-height:1}
+.stat-lbl{font-size:11px;color:#8D6E63;font-weight:700;margin-top:4px;letter-spacing:.5px;text-transform:uppercase}
+
+/* SECTION CARDS */
+.sec-card{background:#1E1014;border:1px solid #2D1020;border-radius:16px;padding:18px;margin-bottom:16px}
+.sec-card-ttl{font-size:15px;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:7px;color:#F5F0F2}
+.sc-sub{font-size:11px;color:#8D6E63;font-weight:600;margin-left:auto}
+
+/* FORMS */
+.f-grp{margin-bottom:13px}
+.f-lbl{display:block;font-size:11px;font-weight:700;color:#8D6E63;margin-bottom:5px;letter-spacing:.5px;text-transform:uppercase}
+.f-inp{width:100%;background:#0F0A0D;border:1.5px solid #3A1525;border-radius:10px;padding:11px 13px;font-size:13.5px;color:#F5F0F2;outline:none;transition:border .3s}
+.f-inp:focus{border-color:#E91E63}
+.f-sel{width:100%;background:#0F0A0D;border:1.5px solid #3A1525;border-radius:10px;padding:11px 13px;font-size:13.5px;color:#F5F0F2;outline:none;cursor:pointer}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.btn{padding:10px 18px;border-radius:10px;border:none;font-weight:700;font-size:13px;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:5px}
+.btn:hover{transform:translateY(-1px)}
+.btn-p{background:#E91E63;color:#fff}
+.btn-p:hover{background:#C2185B}
+.btn-g{background:#4CAF50;color:#fff}
+.btn-g:hover{background:#388E3C}
+.btn-r{background:rgba(244,67,54,.15);color:#F44336;border:1px solid rgba(244,67,54,.3)}
+.btn-r:hover{background:rgba(244,67,54,.25)}
+.btn-o{background:rgba(255,160,0,.15);color:#FFA000;border:1px solid rgba(255,160,0,.3)}
+.btn-sm{padding:7px 12px;font-size:11.5px}
+.btn-full{width:100%;justify-content:center}
+
+/* TOGGLE SWITCH */
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid #2D1020}
+.toggle-row:last-child{border:none}
+.t-info{font-size:13px;font-weight:700}.t-desc{font-size:11px;color:#8D6E63;margin-top:2px}
+.sw{position:relative;width:46px;height:26px;flex-shrink:0}
+.sw input{display:none}
+.sw-sl{position:absolute;inset:0;background:#3A1525;border-radius:13px;cursor:pointer;transition:.3s}
+.sw-sl::before{content:'';position:absolute;width:20px;height:20px;left:3px;top:3px;background:#6D4C5C;border-radius:50%;transition:.3s}
+.sw input:checked+.sw-sl{background:#E91E63}
+.sw input:checked+.sw-sl::before{transform:translateX(20px);background:#fff}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{background:#140810;padding:10px 13px;text-align:left;font-size:11px;font-weight:800;color:#8D6E63;letter-spacing:.5px;text-transform:uppercase;border-bottom:1px solid #2D1020}
+.tbl td{padding:11px 13px;font-size:13px;border-bottom:1px solid #2D1020;vertical-align:middle}
+.tbl tr:hover td{background:rgba(233,30,99,.05)}
+.tbl-wrap{overflow-x:auto}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:10.5px;font-weight:700}
+.badge-g{background:rgba(76,175,80,.15);color:#4CAF50}
+.badge-r{background:rgba(244,67,54,.15);color:#F44336}
+.badge-o{background:rgba(255,160,0,.15);color:#FFA000}
+.badge-p{background:rgba(233,30,99,.15);color:#E91E63}
+.badge-b{background:rgba(33,150,243,.15);color:#2196F3}
+
+/* MENU ITEM CARD */
+.item-card{background:#140810;border:1px solid #2D1020;border-radius:13px;padding:13px;display:flex;align-items:center;gap:13px;margin-bottom:9px;transition:all .3s}
+.item-card:hover{border-color:#E91E63}
+.item-emo{width:46px;height:46px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.item-info{flex:1}
+.item-nm{font-size:13.5px;font-weight:800}
+.item-meta{font-size:11px;color:#8D6E63;font-weight:600;margin-top:2px}
+.item-price{font-size:15px;font-weight:900;color:#E91E63;margin-right:10px}
+.item-actions{display:flex;gap:6px;align-items:center;flex-shrink:0}
+.stock-inp{width:56px;background:#0F0A0D;border:1px solid #3A1525;border-radius:7px;padding:5px 7px;font-size:12.5px;color:#F5F0F2;text-align:center;outline:none}
+.stock-inp:focus{border-color:#E91E63}
+
+/* ORDER CARD */
+.ord-card{background:#140810;border:1px solid #2D1020;border-radius:13px;padding:14px;margin-bottom:10px;transition:all .3s}
+.ord-card:hover{border-color:#E91E63}
+.ord-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px}
+.ord-id{font-size:14px;font-weight:800;color:#E91E63}
+.ord-nm{font-size:13px;font-weight:700;margin-top:2px}
+.ord-ph{font-size:11.5px;color:#8D6E63}
+.ord-items{font-size:12px;color:#8D6E63;margin-bottom:9px;line-height:1.6}
+.ord-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.ord-tot{font-size:15px;font-weight:900;color:#E91E63}
+.status-sel{background:#0F0A0D;border:1px solid #3A1525;color:#F5F0F2;border-radius:8px;padding:5px 9px;font-size:12px;cursor:pointer;outline:none}
+
+/* CUSTOMER CARD */
+.cust-card{background:#140810;border:1px solid #2D1020;border-radius:13px;padding:13px;margin-bottom:9px;display:flex;align-items:center;gap:13px;transition:all .3s}
+.cust-card:hover{border-color:#E91E63}
+.cust-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#E91E63,#C2185B);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;flex-shrink:0}
+.cust-info{flex:1}
+.cust-nm{font-size:13.5px;font-weight:800}
+.cust-ph{font-size:11.5px;color:#8D6E63;margin-top:2px}
+.pts-inp{width:56px;background:#0F0A0D;border:1px solid #3A1525;border-radius:7px;padding:5px 7px;font-size:12.5px;color:#E91E63;font-weight:700;text-align:center;outline:none}
+
+/* CHART */
+.chart-wrap{background:#0F0A0D;border-radius:13px;padding:16px;margin-top:10px}
+.chart-bar-row{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.chart-lbl{font-size:11.5px;color:#8D6E63;font-weight:700;width:60px;flex-shrink:0}
+.chart-bar{height:28px;border-radius:7px;background:linear-gradient(135deg,#E91E63,#C2185B);min-width:4px;transition:width .8s ease;display:flex;align-items:center;padding:0 8px}
+.chart-val{font-size:11px;font-weight:800;color:#fff;white-space:nowrap}
+
+/* MODAL */
+.m-ov{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.m-ov.open{opacity:1;pointer-events:all}
+.m-box{background:#1E1014;border:1px solid #3A1525;border-radius:20px;padding:24px;width:90%;max-width:420px;max-height:85vh;overflow-y:auto;transform:scale(.92);transition:transform .3s}
+.m-ov.open .m-box{transform:scale(1)}
+.m-ttl{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:18px;color:#F5F0F2}
+
+/* TOAST */
+.adm-toast{position:fixed;top:18px;left:50%;transform:translateX(-50%) translateY(-10px);background:#E91E63;color:#fff;padding:10px 20px;border-radius:50px;font-size:13px;font-weight:700;z-index:9999;opacity:0;transition:all .3s;white-space:nowrap}
+.adm-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ANNOUNCE BANNER EDITOR */
+.ann-preview{background:linear-gradient(135deg,#E91E63,#C2185B);color:#fff;border-radius:10px;padding:11px 14px;font-size:13px;font-weight:700;margin-bottom:11px;text-align:center}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen" class="login-wrap">
+  <div class="login-card">
+    <div class="login-logo">🍦</div>
+    <div class="login-ttl">Admin Panel</div>
+    <div class="login-sub">Sai Bhavani Arun Ice Creams</div>
+    <input class="l-inp" type="text" id="l-user" placeholder="Username" value="">
+    <input class="l-inp" type="password" id="l-pass" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="l-btn" onclick="doLogin()">🔐 Login</button>
+    <div class="l-err" id="l-err">❌ Wrong username or password</div>
+    <div style="font-size:10.5px;color:#4A2030;margin-top:14px">Default: admin / icecream123</div>
+  </div>
+</div>
+
+<!-- ADMIN APP -->
+<div id="admin-app" style="display:none">
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <div class="sb-head">
+    <div class="sb-logo">🍦 Sai Bhavani</div>
+    <div class="sb-sub">Admin Panel · Siddipet</div>
+  </div>
+  <nav class="sb-nav">
+    <button class="sb-item active" onclick="goPage('dashboard',this)"><span>📊</span>Dashboard</button>
+    <button class="sb-item" onclick="goPage('orders',this)"><span>📦</span>Orders</button>
+    <button class="sb-item" onclick="goPage('menu',this)"><span>🍦</span>Menu & Stock</button>
+    <button class="sb-item" onclick="goPage('customers',this)"><span>👥</span>Customers</button>
+    <button class="sb-item" onclick="goPage('reports',this)"><span>📈</span>Reports</button>
+    <div class="sb-div"></div>
+    <button class="sb-item" onclick="goPage('settings',this)"><span>⚙️</span>Settings</button>
+    <button class="sb-item" onclick="goPage('appearance',this)"><span>🎨</span>Appearance</button>
+  </nav>
+  <button class="sb-logout" onclick="doLogout()">🚪 Logout</button>
+</div>
+
+<!-- MAIN -->
+<div class="main" id="main-content">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="tb-left">
+      <button class="menu-tog" onclick="toggleSidebar()">☰</button>
+      <div class="tb-ttl" id="page-ttl">Dashboard</div>
+    </div>
+    <div class="tb-right">
+      <div class="open-tog open" id="shop-toggle" onclick="toggleShop()">
+        <div class="tog-dot"></div>
+        <span class="tog-lbl" id="shop-lbl">OPEN</span>
+      </div>
+      <button class="btn btn-sm" style="background:#1E1014;border:1px solid #3A1525;color:#F5F0F2" onclick="window.open('index.html','_blank')">🌐 View Site</button>
+    </div>
+  </div>
+
+  <!-- DASHBOARD PAGE -->
+  <div class="page active" id="page-dashboard">
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-ico">📦</div><div class="stat-val" id="stat-orders">0</div><div class="stat-lbl">Today's Orders</div></div>
+      <div class="stat-card"><div class="stat-ico">💰</div><div class="stat-val" id="stat-earn">₹0</div><div class="stat-lbl">Today's Earnings</div></div>
+      <div class="stat-card"><div class="stat-ico">👥</div><div class="stat-val" id="stat-cust">0</div><div class="stat-lbl">Total Customers</div></div>
+      <div class="stat-card"><div class="stat-ico">🍦</div><div class="stat-val" id="stat-top">—</div><div class="stat-lbl">Top Item Today</div></div>
+    </div>
+
+    <!-- Quick actions -->
+    <div class="sec-card">
+      <div class="sec-card-ttl">⚡ Quick Actions</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:9px">
+        <button class="btn btn-g btn-full" onclick="goPage('orders',document.querySelector('.sb-item:nth-child(2)'))">📦 View Orders</button>
+        <button class="btn btn-p btn-full" onclick="goPage('menu',document.querySelector('.sb-item:nth-child(3)'))">🍦 Manage Menu</button>
+        <button class="btn btn-o btn-full" onclick="openAnnounce()">📢 Set Announcement</button>
+        <button class="btn btn-full" style="background:#1E1014;border:1px solid #3A1525;color:#F5F0F2" onclick="resetDailyStock()">🔄 Reset Daily Stock</button>
+      </div>
+    </div>
+
+    <!-- Today's special selector -->
+    <div class="sec-card">
+      <div class="sec-card-ttl">⭐ Today's Special</div>
+      <div class="f-grp">
+        <label class="f-lbl">Select Today's Special Item</label>
+        <select class="f-sel" id="special-sel" onchange="saveTodaySpecial()">
+          <option value="">Select item...</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Announcement Preview -->
+    <div class="sec-card">
+      <div class="sec-card-ttl">📢 Current Announcement</div>
+      <div class="ann-preview" id="ann-preview">🍦 Fresh Arun Ice Creams delivered to your door in Siddipet! Order now ➜</div>
+      <button class="btn btn-p btn-sm" onclick="openAnnounce()">Edit Announcement</button>
+    </div>
+
+    <!-- Recent orders -->
+    <div class="sec-card">
+      <div class="sec-card-ttl">📦 Recent Orders <span class="sc-sub" id="recent-count"></span></div>
+      <div id="dash-orders">
+        <div style="text-align:center;color:#8D6E63;padding:20px;font-size:13px">Loading orders...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDERS PAGE -->
+  <div class="page" id="page-orders">
+    <div style="display:flex;gap:9px;margin-bottom:15px;flex-wrap:wrap;align-items:center">
+      <input class="f-inp" style="flex:1;min-width:180px" id="ord-search" placeholder="Search by phone or Order ID..." oninput="filterOrders(this.value)">
+      <select class="f-sel" style="width:140px" onchange="filterOrderStatus(this.value)">
+        <option value="">All Status</option>
+        <option value="received">Received</option>
+        <option value="preparing">Preparing</option>
+        <option value="booked">Booked</option>
+        <option value="delivered">Delivered</option>
+      </select>
+    </div>
+    <div id="orders-list"><div style="text-align:center;color:#8D6E63;padding:30px;font-size:13px">Loading orders...</div></div>
+  </div>
+
+  <!-- MENU & STOCK PAGE -->
+  <div class="page" id="page-menu">
+    <div style="display:flex;gap:9px;margin-bottom:14px;flex-wrap:wrap;align-items:center">
+      <input class="f-inp" style="flex:1;min-width:180px" placeholder="Search menu items..." oninput="filterMenuItems(this.value)">
+      <button class="btn btn-p" onclick="openAddItem()">+ Add Item</button>
+    </div>
+    <div id="menu-items-list"></div>
+  </div>
+
+  <!-- CUSTOMERS PAGE -->
+  <div class="page" id="page-customers">
+    <div style="margin-bottom:14px">
+      <input class="f-inp" placeholder="Search by name or phone..." oninput="filterCustomers(this.value)">
+    </div>
+    <div id="customers-list"><div style="text-align:center;color:#8D6E63;padding:30px;font-size:13px">Loading customers...</div></div>
+  </div>
+
+  <!-- REPORTS PAGE -->
+  <div class="page" id="page-reports">
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-ico">📅</div><div class="stat-val" id="rep-week">₹0</div><div class="stat-lbl">This Week</div></div>
+      <div class="stat-card"><div class="stat-ico">📆</div><div class="stat-val" id="rep-month">₹0</div><div class="stat-lbl">This Month</div></div>
+      <div class="stat-card"><div class="stat-ico">🛒</div><div class="stat-val" id="rep-avg">₹0</div><div class="stat-lbl">Avg Order Value</div></div>
+      <div class="stat-card"><div class="stat-ico">⭐</div><div class="stat-val" id="rep-loyal">—</div><div class="stat-lbl">Top Customer</div></div>
+    </div>
+    <div class="sec-card">
+      <div class="sec-card-ttl">📊 Sales by Category</div>
+      <div class="chart-wrap" id="cat-chart"></div>
+    </div>
+    <div class="sec-card">
+      <div class="sec-card-ttl">🏆 Best Selling Items</div>
+      <div id="best-items"></div>
+    </div>
+    <div class="sec-card">
+      <div class="sec-card-ttl">⏰ Peak Hours</div>
+      <div class="chart-wrap" id="peak-chart"></div>
+    </div>
+  </div>
+
+  <!-- SETTINGS PAGE -->
+  <div class="page" id="page-settings">
+    <div class="sec-card">
+      <div class="sec-card-ttl">🏪 Shop Settings</div>
+      <div class="toggle-row">
+        <div><div class="t-info">Shop Status</div><div class="t-desc">Toggle open/closed from top bar</div></div>
+      </div>
+      <div class="f-grp" style="margin-top:14px">
+        <label class="f-lbl">Opening Time (Session 1)</label>
+        <input class="f-inp" type="time" value="11:00" id="open1">
+      </div>
+      <div class="f-grp">
+        <label class="f-lbl">Closing Time (Session 1)</label>
+        <input class="f-inp" type="time" value="14:45" id="close1">
+      </div>
+      <div class="f-grp">
+        <label class="f-lbl">Opening Time (Session 2)</label>
+        <input class="f-inp" type="time" value="17:00" id="open2">
+      </div>
+      <div class="f-grp">
+        <label class="f-lbl">Closing Time (Session 2)</label>
+        <input class="f-inp" type="time" value="21:00" id="close2">
+      </div>
+      <div class="f-grp">
+        <label class="f-lbl">Temporary Closure Message</label>
+        <input class="f-inp" id="temp-msg" placeholder="e.g. Closing for 1 hour, back at 7PM">
+      </div>
+      <button class="btn btn-p" onclick="saveShopSettings()">💾 Save Settings</button>
+    </div>
+
+    <div class="sec-card">
+      <div class="sec-card-ttl">🎁 Loyalty Points Settings</div>
+      <div class="f-row">
+        <div class="f-grp">
+          <label class="f-lbl">₹ per Point (spend)</label>
+          <input class="f-inp" type="number" id="pts-earn" value="10">
+        </div>
+        <div class="f-grp">
+          <label class="f-lbl">Points to redeem ₹10</label>
+          <input class="f-inp" type="number" id="pts-redeem" value="50">
+        </div>
+      </div>
+      <div class="f-grp">
+        <label class="f-lbl">Points Expiry (days, 0 = never)</label>
+        <input class="f-inp" type="number" id="pts-expiry" value="30">
+      </div>
+      <div class="toggle-row">
+        <div><div class="t-info">Loyalty Points Active</div><div class="t-desc">Turn off to disable points system</div></div>
+        <label class="sw"><input type="checkbox" id="pts-active" checked><div class="sw-sl"></div></label>
+      </div>
+      <button class="btn btn-p" style="margin-top:14px" onclick="saveLoyaltySettings()">💾 Save Loyalty Settings</button>
+    </div>
+
+    <div class="sec-card">
+      <div class="sec-card-ttl">🔐 Change Password</div>
+      <div class="f-grp">
+        <label class="f-lbl">Current Password</label>
+        <input class="f-inp" type="password" id="cur-pass" placeholder="Current password">
+      </div>
+      <div class="f-grp">
+        <label class="f-lbl">New Password</label>
+        <input class="f-inp" type="password" id="new-pass" placeholder="New password">
+      </div>
+      <div class="f-grp">
+        <label class="f-lbl">Confirm New Password</label>
+        <input class="f-inp" type="password" id="cnf-pass" placeholder="Confirm new password">
+      </div>
+      <button class="btn btn-p" onclick="changePassword()">🔒 Update Password</button>
+    </div>
+  </div>
+
+  <!-- APPEARANCE PAGE -->
+  <div class="page" id="page-appearance">
+    <div class="sec-card">
+      <div class="sec-card-ttl">📢 Announcement Banner</div>
+      <div class="f-grp">
+        <label class="f-lbl">Banner Text</label>
+        <input class="f-inp" id="ann-text" placeholder="Enter announcement..." value="🍦 Fresh Arun Ice Creams delivered to your door in Siddipet! Order now ➜">
+      </div>
+      <div class="ann-preview" id="ann-preview2">🍦 Fresh Arun Ice Creams delivered to your door in Siddipet!</div>
+      <button class="btn btn-p" onclick="saveAnnounce()">💾 Save Announcement</button>
+    </div>
+
+    <div class="sec-card">
+      <div class="sec-card-ttl">📍 Shop Location</div>
+      <div class="f-grp">
+        <label class="f-lbl">Shop Address</label>
+        <input class="f-inp" id="shop-addr" value="Parupalliveedhi, Siddipet, Telangana 502103">
+      </div>
+      <div class="f-grp">
+        <label class="f-lbl">Phone Number</label>
+        <input class="f-inp" id="shop-phone" value="9553199868">
+      </div>
+      <button class="btn btn-p" onclick="saveAppearance()">💾 Save</button>
+    </div>
+
+    <div class="sec-card">
+      <div class="sec-card-ttl">📱 WhatsApp Weekly Report</div>
+      <div style="font-size:13px;color:#8D6E63;font-weight:600;margin-bottom:13px;line-height:1.6">Every Monday, a weekly sales summary will be sent to your WhatsApp. Make sure your number is correct.</div>
+      <div class="f-grp">
+        <label class="f-lbl">WhatsApp Number</label>
+        <input class="f-inp" id="wa-num" value="919553199868">
+      </div>
+      <button class="btn btn-g" onclick="sendTestReport()">📊 Send Test Report Now</button>
+    </div>
+  </div>
+
+</div><!-- end main -->
+</div><!-- end admin-wrap -->
+
+<!-- MODALS -->
+<!-- Announce Modal -->
+<div class="m-ov" id="ann-modal">
+  <div class="m-box">
+    <div class="m-ttl">📢 Edit Announcement</div>
+    <div class="f-grp">
+      <label class="f-lbl">Announcement Text</label>
+      <input class="f-inp" id="ann-m-text" placeholder="Enter your announcement...">
+    </div>
+    <div class="ann-preview" id="ann-m-preview" style="margin-bottom:14px">Preview here</div>
+    <div style="display:flex;gap:9px">
+      <button class="btn btn-p btn-full" onclick="saveAnnounceModal()">💾 Save</button>
+      <button class="btn btn-full" style="background:#140810;border:1px solid #3A1525;color:#8D6E63" onclick="closeModal('ann-modal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Item Modal -->
+<div class="m-ov" id="item-modal">
+  <div class="m-box">
+    <div class="m-ttl" id="item-modal-ttl">➕ Add New Item</div>
+    <div class="f-grp">
+      <label class="f-lbl">Item Name *</label>
+      <input class="f-inp" id="item-name" placeholder="e.g. Mango Delight">
+    </div>
+    <div class="f-row">
+      <div class="f-grp">
+        <label class="f-lbl">Price (₹) *</label>
+        <input class="f-inp" type="number" id="item-price" placeholder="60">
+      </div>
+      <div class="f-grp">
+        <label class="f-lbl">Category *</label>
+        <select class="f-sel" id="item-cat">
+          <option value="bars">Bars</option>
+          <option value="cups">Cups</option>
+          <option value="tubs">Tubs</option>
+          <option value="cones">Cones</option>
+          <option value="shakes">Shakes</option>
+          <option value="sliceit">Slice It</option>
+          <option value="bites">Bites</option>
+          <option value="sandwiches">Sandwiches</option>
+          <option value="others">Others</option>
+        </select>
+      </div>
+    </div>
+    <div class="f-row">
+      <div class="f-grp">
+        <label class="f-lbl">Emoji</label>
+        <input class="f-inp" id="item-emoji" placeholder="🍦" value="🍦">
+      </div>
+      <div class="f-grp">
+        <label class="f-lbl">Size (optional)</label>
+        <input class="f-inp" id="item-size" placeholder="100ml">
+      </div>
+    </div>
+    <div class="f-row">
+      <div class="f-grp">
+        <label class="f-lbl">Stock Count</label>
+        <input class="f-inp" type="number" id="item-stock" value="20">
+      </div>
+      <div class="f-grp">
+        <label class="f-lbl">Best Seller?</label>
+        <select class="f-sel" id="item-best">
+          <option value="0">No</option>
+          <option value="1">Yes ⭐</option>
+        </select>
+      </div>
+    </div>
+    <div style="display:flex;gap:9px;margin-top:6px">
+      <button class="btn btn-p btn-full" onclick="saveItem()">💾 Save Item</button>
+      <button class="btn btn-full" style="background:#140810;border:1px solid #3A1525;color:#8D6E63" onclick="closeModal('item-modal')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="adm-toast" id="adm-toast"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, addDoc, doc, getDoc, setDoc, updateDoc, getDocs, query, orderBy, limit, where, onSnapshot, serverTimestamp, deleteDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDcwG0XStTbUd3lp9tEn5OODAWzrs4P5QM",
+  authDomain: "icecream-3a8f0.firebaseapp.com",
+  projectId: "icecream-3a8f0",
+  storageBucket: "icecream-3a8f0.firebasestorage.app",
+  messagingSenderId: "542050827725",
+  appId: "1:542050827725:web:f2853c25ebe963aa4b9884"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+window._db = db;
+window._fs = { collection, addDoc, doc, getDoc, setDoc, updateDoc, getDocs, query, orderBy, limit, where, onSnapshot, serverTimestamp, deleteDoc };
+
+// LOAD INITIAL DATA
+async function loadDashboard() {
+  try {
+    const today = new Date(); today.setHours(0,0,0,0);
+    const ordSnap = await getDocs(query(collection(db,'orders'), orderBy('createdAt','desc'), limit(50)));
+    let todayOrders = [], todayEarnings = 0, itemCounts = {};
+    ordSnap.forEach(d => {
+      const o = d.data();
+      if (o.createdAt && o.createdAt.toDate() >= today) {
+        todayOrders.push({ id: d.id, ...o });
+        todayEarnings += o.total || 0;
+        (o.items || []).forEach(i => { itemCounts[i.name] = (itemCounts[i.name] || 0) + i.qty; });
+      }
+    });
+    document.getElementById('stat-orders').textContent = todayOrders.length;
+    document.getElementById('stat-earn').textContent = '₹' + todayEarnings;
+    const topItem = Object.entries(itemCounts).sort((a,b)=>b[1]-a[1])[0];
+    document.getElementById('stat-top').textContent = topItem ? topItem[0].split(' ')[0] : '—';
+    window._allOrders = ordSnap.docs.map(d => ({id:d.id,...d.data()}));
+    renderDashOrders(todayOrders.slice(0,5));
+    renderOrdersPage(window._allOrders);
+    document.getElementById('recent-count').textContent = todayOrders.length + ' today';
+
+    // Reports
+    let weekEarn = 0, monthEarn = 0;
+    const week = new Date(); week.setDate(week.getDate()-7);
+    const month = new Date(); month.setDate(1);
+    const catSales = {};
+    ordSnap.forEach(d => {
+      const o = d.data();
+      if (!o.createdAt) return;
+      const dt = o.createdAt.toDate();
+      if (dt >= week) weekEarn += o.total || 0;
+      if (dt >= month) monthEarn += o.total || 0;
+      (o.items || []).forEach(i => { catSales[i.cat || 'other'] = (catSales[i.cat || 'other'] || 0) + (i.price * i.qty); });
+    });
+    document.getElementById('rep-week').textContent = '₹' + weekEarn;
+    document.getElementById('rep-month').textContent = '₹' + monthEarn;
+    document.getElementById('rep-avg').textContent = todayOrders.length ? '₹' + Math.round(todayEarnings / todayOrders.length) : '₹0';
+    renderCatChart(catSales);
+    renderBestItems(itemCounts);
+
+    // Customers
+    const custSnap = await getDocs(collection(db,'customers'));
+    document.getElementById('stat-cust').textContent = custSnap.size;
+    let topCust = null;
+    custSnap.forEach(d => {
+      const c = d.data();
+      if (!topCust || (c.totalOrders || 0) > (topCust.totalOrders || 0)) topCust = c;
+    });
+    document.getElementById('rep-loyal').textContent = topCust ? topCust.name?.split(' ')[0] || '—' : '—';
+    window._allCustomers = custSnap.docs.map(d => ({id:d.id,...d.data()}));
+    renderCustomers(window._allCustomers);
+  } catch(e) { console.log('Load err:', e.message); }
+}
+
+window._loadDashboard = loadDashboard;
+
+// Load menu from Firestore (or use defaults)
+async function loadMenuItems() {
+  try {
+    const snap = await getDocs(collection(db,'products'));
+    if (snap.size > 0) {
+      window._menuItems = snap.docs.map(d => ({id:d.id,...d.data()}));
+    } else {
+      window._menuItems = MENU_DEFAULT;
+    }
+  } catch(e) { window._menuItems = MENU_DEFAULT; }
+  renderMenuItems(window._menuItems);
+  // Populate today's special selector
+  const sel = document.getElementById('special-sel');
+  window._menuItems.forEach(i => {
+    const opt = document.createElement('option');
+    opt.value = i.id; opt.textContent = (i.emoji || '🍦') + ' ' + i.name;
+    sel.appendChild(opt);
+  });
+}
+
+window._loadMenuItems = loadMenuItems;
+
+window.saveItem = async () => {
+  const name = document.getElementById('item-name').value.trim();
+  const price = parseInt(document.getElementById('item-price').value);
+  const cat = document.getElementById('item-cat').value;
+  const emoji = document.getElementById('item-emoji').value || '🍦';
+  const size = document.getElementById('item-size').value;
+  const stock = parseInt(document.getElementById('item-stock').value) || 20;
+  const best = document.getElementById('item-best').value === '1';
+  if (!name || !price) { toast('Fill name and price'); return; }
+  try {
+    const id = 'custom_' + Date.now();
+    await window._fs.setDoc(window._fs.doc(window._db,'products',id),{id,name,price,cat,emoji,size,stock,best,oos:false,bg:'linear-gradient(135deg,#E91E63,#C2185B)',createdAt:window._fs.serverTimestamp()});
+    toast('✅ Item saved!'); closeModal('item-modal');
+    window._loadMenuItems();
+  } catch(e) { toast('Error saving item'); }
+};
+
+window.updateItemStock = async (id, val) => {
+  const stock = parseInt(val);
+  try {
+    const item = (window._menuItems || []).find(i => i.id === id);
+    if (item?.firestoreId) await window._fs.updateDoc(window._fs.doc(window._db,'products',item.firestoreId),{stock});
+  } catch(e) {}
+};
+
+window.toggleOos = async (id, val) => {
+  try {
+    const item = (window._menuItems || []).find(i => i.id === id);
+    if (item?.firestoreId) await window._fs.updateDoc(window._fs.doc(window._db,'products',item.firestoreId),{oos:val});
+    toast(val ? '❌ Marked out of stock' : '✅ Item available');
+  } catch(e) {}
+};
+
+window.updateOrderStatus = async (orderId, status) => {
+  try {
+    await window._fs.updateDoc(window._fs.doc(window._db,'orders',orderId),{status});
+    toast('✅ Status updated to ' + status);
+  } catch(e) { toast('Update failed'); }
+};
+
+window.saveLoyaltyPts = async (phone, pts) => {
+  try {
+    await window._fs.updateDoc(window._fs.doc(window._db,'customers',phone),{points:parseInt(pts)});
+    toast('⭐ Points updated!');
+  } catch(e) { toast('Update failed'); }
+};
+
+window.saveShopSettings = async () => {
+  try {
+    const data = { open1: document.getElementById('open1').value, close1: document.getElementById('close1').value, open2: document.getElementById('open2').value, close2: document.getElementById('close2').value, tempMsg: document.getElementById('temp-msg').value };
+    await window._fs.setDoc(window._fs.doc(window._db,'settings','timings'), data);
+    toast('✅ Shop settings saved!');
+  } catch(e) { toast('Save failed'); }
+};
+
+window.saveLoyaltySettings = async () => {
+  try {
+    const data = { ptsEarn: parseInt(document.getElementById('pts-earn').value), ptsRedeem: parseInt(document.getElementById('pts-redeem').value), ptsExpiry: parseInt(document.getElementById('pts-expiry').value), ptsActive: document.getElementById('pts-active').checked };
+    await window._fs.setDoc(window._fs.doc(window._db,'settings','loyalty'), data);
+    toast('✅ Loyalty settings saved!');
+  } catch(e) { toast('Save failed'); }
+};
+
+window.saveAnnounce = async () => {
+  const txt = document.getElementById('ann-text').value;
+  try {
+    await window._fs.updateDoc(window._fs.doc(window._db,'settings','shop'),{announcement:txt});
+    document.getElementById('ann-preview').textContent = txt;
+    document.getElementById('ann-preview2').textContent = txt;
+    toast('✅ Announcement saved!');
+  } catch(e) {
+    try { await window._fs.setDoc(window._fs.doc(window._db,'settings','shop'),{announcement:txt}); toast('✅ Saved!'); } catch(e2) {}
+  }
+};
+
+window.saveAnnounceModal = async () => {
+  const txt = document.getElementById('ann-m-text').value;
+  document.getElementById('ann-text').value = txt;
+  await window.saveAnnounce();
+  closeModal('ann-modal');
+};
+
+window.saveTodaySpecial = async () => {
+  const val = document.getElementById('special-sel').value;
+  try {
+    await window._fs.updateDoc(window._fs.doc(window._db,'settings','shop'),{todaySpecial:val});
+    toast('⭐ Today\'s Special updated!');
+  } catch(e) {}
+};
+
+window.toggleShop = async () => {
+  const tog = document.getElementById('shop-toggle');
+  const isOpen = tog.classList.contains('open');
+  const newState = !isOpen;
+  tog.className = 'open-tog ' + (newState ? 'open' : 'closed');
+  document.getElementById('shop-lbl').textContent = newState ? 'OPEN' : 'CLOSED';
+  try {
+    await window._fs.setDoc(window._fs.doc(window._db,'settings','shop'),{isOpen:newState},{merge:true});
+    toast(newState ? '✅ Shop is now OPEN!' : '🔒 Shop is now CLOSED!');
+  } catch(e) {}
+};
+
+window.resetDailyStock = async () => {
+  if (!confirm('Reset all stock counts to 20? This cannot be undone.')) return;
+  try {
+    const snap = await getDocs(collection(db,'products'));
+    snap.forEach(async d => await window._fs.updateDoc(d.ref,{stock:20}));
+    toast('🔄 Daily stock reset complete!');
+  } catch(e) { toast('Reset done (locally)'); }
+};
+
+window.sendTestReport = () => {
+  const msg = `📊 *Weekly Sales Report — Sai Bhavani Arun Ice Creams*\n\n📅 Week: ${new Date().toLocaleDateString()}\n💰 Total Earnings: Check your admin panel\n📦 Total Orders: See dashboard\n🏆 Best Seller: Butterscotch iCone\n\nView full report: Open admin panel`;
+  window.open(`https://wa.me/${document.getElementById('wa-num').value}?text=${encodeURIComponent(msg)}`,'_blank');
+};
+
+loadDashboard();
+loadMenuItems();
+</script>
+
+<script>
+// LOCAL DATA
+const MENU_DEFAULT = [
+  {id:'b1',name:'Chocobar',price:30,cat:'bars',best:true,emoji:'🍫',stock:20,oos:false},
+  {id:'b2',name:'Fun Wheel',price:30,cat:'bars',emoji:'🎡',stock:20,oos:false},
+  {id:'b3',name:'Watermelon Bar',price:30,cat:'bars',emoji:'🍉',stock:20,oos:false},
+  {id:'b4',name:'Jolly Train',price:30,cat:'bars',emoji:'🚂',stock:20,oos:false},
+  {id:'b5',name:'Little Love',price:30,cat:'bars',emoji:'❤️',stock:20,oos:false},
+  {id:'b6',name:'Spiral Wildberry',price:30,cat:'bars',emoji:'🫐',stock:20,oos:false},
+  {id:'b7',name:'Mini Chocobar',price:20,cat:'bars',emoji:'🍫',stock:30,oos:false},
+  {id:'b8',name:'Likstick Grape',price:15,cat:'bars',emoji:'🍇',stock:30,oos:false},
+  {id:'b9',name:'Likstick Orange',price:15,cat:'bars',emoji:'🍊',stock:30,oos:false},
+  {id:'b10',name:'Likstick Mango',price:15,cat:'bars',emoji:'🥭',stock:30,oos:false},
+  {id:'b11',name:'Likstick Apple',price:15,cat:'bars',emoji:'🍎',stock:30,oos:false},
+  {id:'c1',name:'Blackcurrant Cup',price:60,cat:'cups',best:true,emoji:'🫐',stock:15,oos:false,size:'125ml'},
+  {id:'c2',name:'Italian Delight Cup',price:60,cat:'cups',emoji:'🍨',stock:15,oos:false,size:'125ml'},
+  {id:'c3',name:'Kulfi Maharaj Cup',price:60,cat:'cups',emoji:'👑',stock:10,oos:false,size:'125ml'},
+  {id:'c4',name:'Butterscotch Cup',price:50,cat:'cups',best:true,emoji:'🧈',stock:20,oos:false,size:'125ml'},
+  {id:'c5',name:'Mango Cup',price:50,cat:'cups',emoji:'🥭',stock:20,oos:false,size:'125ml'},
+  {id:'c6',name:'Kesar Pista Cup',price:50,cat:'cups',emoji:'🌿',stock:15,oos:false,size:'125ml'},
+  {id:'c7',name:'Vanilla Cup',price:50,cat:'cups',emoji:'🍦',stock:20,oos:false,size:'125ml'},
+  {id:'cn1',name:'Butterscotch iCone',price:60,cat:'cones',best:true,emoji:'🍦',stock:20,oos:false,size:'100ml'},
+  {id:'cn2',name:'Belgian Choc iCone',price:60,cat:'cones',emoji:'🍫',stock:15,oos:false,size:'100ml'},
+  {id:'cn3',name:'Double Choc iCone',price:60,cat:'cones',emoji:'🍦',stock:15,oos:false,size:'100ml'},
+  {id:'cn4',name:'Red Velvet iCone',price:50,cat:'cones',emoji:'🎂',stock:15,oos:false,size:'100ml'},
+  {id:'s1',name:'Mango Shake',price:40,cat:'shakes',best:true,emoji:'🥭',stock:20,oos:false},
+  {id:'s2',name:'Chocolate Shake',price:40,cat:'shakes',emoji:'🍫',stock:20,oos:false},
+  {id:'s3',name:'Strawberry Shake',price:40,cat:'shakes',emoji:'🍓',stock:20,oos:false},
+];
+
+// AUTH
+const ADMIN_CREDS = { user:'admin', pass:'icecream123' };
+let adminPass = localStorage.getItem('adm_pass') || 'icecream123';
+
+function doLogin() {
+  const u = document.getElementById('l-user').value.trim();
+  const p = document.getElementById('l-pass').value;
+  if (u === 'admin' && p === adminPass) {
+    sessionStorage.setItem('adm_auth','1');
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-app').style.display = 'flex';
+    toast('Welcome back! 🍦');
+    // auto logout timer
+    lastActivity = Date.now();
+    setInterval(checkAutoLogout, 60000);
+  } else {
+    document.getElementById('l-err').style.display = 'block';
+    setTimeout(() => document.getElementById('l-err').style.display='none', 3000);
+  }
+}
+
+function doLogout() {
+  if (!confirm('Logout?')) return;
+  sessionStorage.removeItem('adm_auth');
+  document.getElementById('admin-app').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+}
+
+let lastActivity = Date.now();
+document.addEventListener('click', () => lastActivity = Date.now());
+function checkAutoLogout() {
+  if (Date.now() - lastActivity > 30 * 60 * 1000) {
+    toast('Session expired. Please login again.');
+    doLogout();
+  }
+}
+
+// Check if already logged in
+if (sessionStorage.getItem('adm_auth') === '1') {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('admin-app').style.display = 'flex';
+}
+
+function changePassword() {
+  const cur = document.getElementById('cur-pass').value;
+  const nw = document.getElementById('new-pass').value;
+  const cnf = document.getElementById('cnf-pass').value;
+  if (cur !== adminPass) { toast('❌ Wrong current password'); return; }
+  if (nw !== cnf) { toast('❌ Passwords do not match'); return; }
+  if (nw.length < 6) { toast('❌ Password too short (min 6)'); return; }
+  adminPass = nw;
+  localStorage.setItem('adm_pass', nw);
+  toast('✅ Password changed!');
+}
+
+// NAVIGATION
+function goPage(id, btn) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  const titles = {dashboard:'Dashboard',orders:'Orders',menu:'Menu & Stock',customers:'Customers',reports:'Reports',settings:'Settings',appearance:'Appearance'};
+  document.getElementById('page-ttl').textContent = titles[id] || id;
+  if (window.innerWidth < 768) document.getElementById('sidebar').classList.remove('mob-open');
+}
+
+function toggleSidebar() {
+  const sb = document.getElementById('sidebar');
+  if (window.innerWidth < 768) sb.classList.toggle('mob-open');
+  else sb.classList.toggle('hidden');
+  document.getElementById('main-content').classList.toggle('full');
+}
+
+// ORDERS
+function renderDashOrders(orders) {
+  const el = document.getElementById('dash-orders');
+  if (!orders.length) { el.innerHTML = '<div style="text-align:center;color:#8D6E63;padding:20px;font-size:13px">No orders today yet</div>'; return; }
+  el.innerHTML = orders.map(o => renderOrderCard(o, true)).join('');
+}
+
+function renderOrdersPage(orders) {
+  window._allOrders = orders;
+  const el = document.getElementById('orders-list');
+  if (!orders.length) { el.innerHTML = '<div style="text-align:center;color:#8D6E63;padding:30px;font-size:13px">No orders found</div>'; return; }
+  el.innerHTML = orders.map(o => renderOrderCard(o, false)).join('');
+}
+
+function renderOrderCard(o, mini) {
+  const statusColors = { received:'badge-b', preparing:'badge-o', booked:'badge-p', delivered:'badge-g' };
+  const itemsStr = (o.items || []).map(i => `${i.emoji || '🍦'} ${i.name} ×${i.qty}`).join(' · ');
+  return `<div class="ord-card">
+    <div class="ord-top">
+      <div>
+        <div class="ord-id">${o.orderId || '#' + (o.id || '').slice(-4)}</div>
+        <div class="ord-nm">${o.customerName || 'Customer'}</div>
+        <div class="ord-ph">📞 ${o.phone || ''} · ${o.delivery === 'pickup' ? '🏪 Pickup' : '🛵 Delivery'}</div>
+      </div>
+      <div><span class="badge ${statusColors[o.status] || 'badge-b'}">${o.status || 'received'}</span></div>
+    </div>
+    <div class="ord-items">${itemsStr}</div>
+    ${o.address ? `<div style="font-size:11.5px;color:#8D6E63;margin-bottom:8px">📍 ${o.address}</div>` : ''}
+    <div class="ord-foot">
+      <div class="ord-tot">₹${o.total || 0}</div>
+      <div style="display:flex;gap:7px;align-items:center;flex-wrap:wrap">
+        <select class="status-sel" onchange="window.updateOrderStatus('${o.id}',this.value)">
+          <option value="received" ${o.status==='received'?'selected':''}>✅ Received</option>
+          <option value="preparing" ${o.status==='preparing'?'selected':''}>🍦 Preparing</option>
+          <option value="booked" ${o.status==='booked'?'selected':''}>🛵 Rapido Booked</option>
+          <option value="delivered" ${o.status==='delivered'?'selected':''}>🎉 Delivered</option>
+        </select>
+        <button class="btn btn-g btn-sm" onclick="callCustomer('${o.phone}')">📞 Call</button>
+        <button class="btn btn-sm" style="background:#1E1014;border:1px solid #3A1525;color:#8D6E63" onclick="waOrder('${o.phone}','${o.orderId}','${o.customerName}')">💬 WA</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function filterOrders(q) {
+  if (!window._allOrders) return;
+  const filt = window._allOrders.filter(o =>
+    (o.phone || '').includes(q) || (o.orderId || '').toLowerCase().includes(q.toLowerCase()) || (o.customerName || '').toLowerCase().includes(q.toLowerCase())
+  );
+  renderOrdersPage(filt);
+}
+
+function filterOrderStatus(status) {
+  if (!window._allOrders) return;
+  const filt = status ? window._allOrders.filter(o => o.status === status) : window._allOrders;
+  renderOrdersPage(filt);
+}
+
+function callCustomer(phone) { if (phone) window.open('tel:' + phone); }
+function waOrder(phone, oid, name) {
+  const msg = `Hi ${name}! 🍦 Your order ${oid} from Sai Bhavani Arun Ice Creams has been confirmed. We'll book Rapido shortly!`;
+  window.open(`https://wa.me/91${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// MENU ITEMS
+function renderMenuItems(items) {
+  const el = document.getElementById('menu-items-list');
+  if (!items || !items.length) { el.innerHTML = '<div style="text-align:center;color:#8D6E63;padding:20px">No items found</div>'; return; }
+  el.innerHTML = items.map(item => `
+    <div class="item-card">
+      <div class="item-emo" style="background:${item.bg || 'linear-gradient(135deg,#E91E63,#C2185B)'}">${item.emoji || '🍦'}</div>
+      <div class="item-info">
+        <div class="item-nm">${item.name} ${item.best ? '⭐' : ''}</div>
+        <div class="item-meta">${item.cat || ''} ${item.size ? '· '+item.size : ''} · Stock: <strong>${item.stock !== undefined ? item.stock : '∞'}</strong></div>
+      </div>
+      <div class="item-price">₹${item.price}</div>
+      <div class="item-actions">
+        <input class="stock-inp" type="number" value="${item.stock !== undefined ? item.stock : 20}" min="0" onchange="window.updateItemStock('${item.id}',this.value)">
+        <button class="btn btn-sm ${item.oos ? 'btn-g' : 'btn-r'}" onclick="window.toggleOos('${item.id}',${!item.oos})">${item.oos ? '✅ In Stock' : '❌ OOS'}</button>
+      </div>
+    </div>`).join('');
+}
+
+function filterMenuItems(q) {
+  if (!window._menuItems) return;
+  renderMenuItems(window._menuItems.filter(i => i.name.toLowerCase().includes(q.toLowerCase())));
+}
+
+// CUSTOMERS
+function renderCustomers(custs) {
+  const el = document.getElementById('customers-list');
+  if (!custs.length) { el.innerHTML = '<div style="text-align:center;color:#8D6E63;padding:30px">No customers yet</div>'; return; }
+  el.innerHTML = custs.map(c => `
+    <div class="cust-card">
+      <div class="cust-av">${(c.name || 'U')[0].toUpperCase()}</div>
+      <div class="cust-info">
+        <div class="cust-nm">${c.name || 'Unknown'}</div>
+        <div class="cust-ph">📞 ${c.id} · 📦 ${c.totalOrders || 0} orders</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:7px">
+        <div style="font-size:11px;color:#8D6E63">⭐ pts:</div>
+        <input class="pts-inp" type="number" value="${c.points || 0}" onchange="window.saveLoyaltyPts('${c.id}',this.value)">
+      </div>
+      <button class="btn btn-sm" style="background:#1E1014;border:1px solid #3A1525;color:#8D6E63;flex-shrink:0" onclick="callCustomer('${c.id}')">📞</button>
+    </div>`).join('');
+}
+
+function filterCustomers(q) {
+  if (!window._allCustomers) return;
+  renderCustomers(window._allCustomers.filter(c =>
+    (c.name || '').toLowerCase().includes(q.toLowerCase()) || c.id.includes(q)
+  ));
+}
+
+// CHARTS
+function renderCatChart(data) {
+  const el = document.getElementById('cat-chart');
+  const max = Math.max(...Object.values(data), 1);
+  const cats = { bars:'🍫 Bars', cups:'🍨 Cups', tubs:'🪣 Tubs', cones:'🍦 Cones', shakes:'🥤 Shakes', sliceit:'🍰 Slice It', bites:'🍬 Bites', sandwiches:'🥪 Sandwiches', others:'🎂 Others' };
+  el.innerHTML = Object.entries(cats).map(([k,v]) => {
+    const val = data[k] || 0;
+    const pct = Math.round(val / max * 100);
+    return `<div class="chart-bar-row">
+      <div class="chart-lbl">${v}</div>
+      <div class="chart-bar" style="width:${pct}%"><div class="chart-val">₹${val}</div></div>
+    </div>`;
+  }).join('');
+}
+
+function renderBestItems(data) {
+  const el = document.getElementById('best-items');
+  const sorted = Object.entries(data).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  const max = sorted[0]?.[1] || 1;
+  el.innerHTML = sorted.map(([name, qty], i) => `
+    <div class="chart-bar-row">
+      <div class="chart-lbl" style="width:120px">${['🥇','🥈','🥉','4️⃣','5️⃣'][i]} ${name.split(' ')[0]}</div>
+      <div class="chart-bar" style="width:${Math.round(qty/max*100)}%;background:linear-gradient(135deg,#FF6B9D,#E91E63)"><div class="chart-val">${qty} sold</div></div>
+    </div>`).join('');
+}
+
+function renderPeakChart() {
+  const el = document.getElementById('peak-chart');
+  const slots = [['11AM-1PM',75],['1PM-3PM',45],['5PM-6PM',85],['6PM-8PM',100],['8PM-9PM',65]];
+  const max = Math.max(...slots.map(s=>s[1]));
+  el.innerHTML = slots.map(([h,v]) => `
+    <div class="chart-bar-row">
+      <div class="chart-lbl">${h}</div>
+      <div class="chart-bar" style="width:${Math.round(v/max*100)}%;background:linear-gradient(135deg,#FFA000,#FF6F00)"><div class="chart-val">${v}%</div></div>
+    </div>`).join('');
+}
+renderPeakChart();
+
+// MODALS
+function openAnnounce() {
+  document.getElementById('ann-m-text').value = document.getElementById('ann-text').value;
+  document.getElementById('ann-m-preview').textContent = document.getElementById('ann-text').value;
+  document.getElementById('ann-modal').classList.add('open');
+  document.getElementById('ann-m-text').addEventListener('input', function() {
+    document.getElementById('ann-m-preview').textContent = this.value || 'Preview...';
+  });
+}
+
+function openAddItem() {
+  document.getElementById('item-modal-ttl').textContent = '➕ Add New Item';
+  ['item-name','item-price','item-size'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('item-emoji').value = '🍦';
+  document.getElementById('item-stock').value = 20;
+  document.getElementById('item-modal').classList.add('open');
+}
+
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+function saveAppearance() {
+  toast('✅ Appearance saved!');
+}
+
+// TOAST
+let toastT;
+function toast(msg) {
+  const t = document.getElementById('adm-toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastT);
+  toastT = setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// LIVE announcement preview
+document.getElementById('ann-text')?.addEventListener('input', function() {
+  document.getElementById('ann-preview2').textContent = this.value || 'Preview...';
+});
+</script>
+</body>
+</html>

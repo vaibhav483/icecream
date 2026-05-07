@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="pink">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sai Bhavani Arun Ice Creams | Siddipet</title>
+<meta name="description" content="Order fresh Arun Ice Creams in Siddipet. Home delivery via Rapido. Call 9553199868.">
+<meta name="keywords" content="Arun ice cream Siddipet, ice cream delivery Siddipet, Sai Bhavani ice creams, ice cream near me Siddipet">
+<meta property="og:title" content="Sai Bhavani Arun Ice Creams | Siddipet">
+<meta property="og:description" content="Delicious Arun Ice Creams delivered to your door in Siddipet!">
+<meta name="theme-color" content="#E91E63">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   THEME VARIABLES
+═══════════════════════════════════════════════ */
+:root {
+  --primary:#E91E63; --primary-l:#F8BBD9; --primary-d:#C2185B;
+  --bg:#FFF5F0; --bg2:#FFF0F5; --card:#fff;
+  --text:#2C1A08; --text-l:#8D6E63; --text-m:#BDBDBD;
+  --border:#F0E0E8; --shadow:rgba(233,30,99,.12);
+  --hero:linear-gradient(135deg,#FF6B9D 0%,#E91E63 50%,#C2185B 100%);
+  --rad:16px; --radS:10px;
+  --ease:all 0.3s cubic-bezier(.4,0,.2,1);
+}
+[data-theme="orange"]{--primary:#FF6B35;--primary-l:#FFD6C4;--primary-d:#E64A19;--bg:#FFF8F5;--bg2:#FFF3EE;--border:#FFE0D0;--shadow:rgba(255,107,53,.12);--hero:linear-gradient(135deg,#FFAB76,#FF6B35,#E64A19);}
+[data-theme="yellow"]{--primary:#FFA000;--primary-l:#FFF9C4;--primary-d:#FF6F00;--bg:#FFFDE7;--bg2:#FFF8E1;--border:#FFE082;--shadow:rgba(255,160,0,.12);--hero:linear-gradient(135deg,#FFE082,#FFA000,#FF6F00);}
+[data-theme="mint"]{--primary:#00897B;--primary-l:#B2DFDB;--primary-d:#00695C;--bg:#E8F5E9;--bg2:#F1F8E9;--border:#B2DFDB;--shadow:rgba(0,137,123,.12);--hero:linear-gradient(135deg,#4DB6AC,#00897B,#00695C);}
+[data-theme="sky"]{--primary:#1E88E5;--primary-l:#BBDEFB;--primary-d:#1565C0;--bg:#E3F2FD;--bg2:#E1F5FE;--border:#BBDEFB;--shadow:rgba(30,136,229,.12);--hero:linear-gradient(135deg,#64B5F6,#1E88E5,#1565C0);}
+[data-theme="dark"]{--primary:#FF6B9D;--primary-l:#4A1230;--primary-d:#E91E63;--bg:#0F0A0D;--bg2:#1A0D14;--card:#1E1014;--text:#FFF5F0;--text-l:#F8BBD9;--text-m:#6D4C5C;--border:#3A1525;--shadow:rgba(255,107,157,.2);--hero:linear-gradient(135deg,#4A1230,#C2185B,#880E4F);}
+/* ═══════════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background .4s,color .4s}
+button,input,textarea{font-family:inherit}
+a{text-decoration:none;color:inherit}
+/* ═══════════════════════════════════════════════
+   ANNOUNCEMENT
+═══════════════════════════════════════════════ */
+.announce{background:var(--primary);color:#fff;text-align:center;padding:9px 40px;font-size:12.5px;font-weight:800;letter-spacing:.5px;position:relative;animation:slideDown .5s ease}
+.announce-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;cursor:pointer;font-size:18px;opacity:.8;line-height:1}
+/* ═══════════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════════ */
+header{background:var(--card);position:sticky;top:0;z-index:1000;box-shadow:0 2px 20px var(--shadow);transition:var(--ease)}
+.hdr-top{display:flex;align-items:center;justify-content:space-between;padding:11px 16px;gap:10px}
+.logo{display:flex;align-items:center;gap:9px;flex-shrink:0}
+.logo-ico{width:42px;height:42px;background:var(--hero);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px}
+.logo-txt{display:flex;flex-direction:column;line-height:1.15}
+.logo-name{font-family:'Playfair Display',serif;font-size:14px;font-weight:900;color:var(--primary)}
+.logo-sub{font-size:9px;font-weight:700;color:var(--text-l);letter-spacing:1.5px;text-transform:uppercase}
+.hdr-right{display:flex;align-items:center;gap:7px;flex-shrink:0}
+.open-badge{display:flex;align-items:center;gap:5px;padding:5px 9px;border-radius:20px;font-size:10px;font-weight:800;letter-spacing:.5px}
+.open-badge.open{background:#E8F5E9;color:#2E7D32}.open-badge.closed{background:#FFEBEE;color:#C62828}
+.open-dot{width:7px;height:7px;border-radius:50%}
+.open-badge.open .open-dot{background:#4CAF50;animation:pulse 1.5s infinite}
+.open-badge.closed .open-dot{background:#F44336}
+.ico-btn{width:37px;height:37px;border-radius:10px;border:none;background:var(--bg);color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:17px;transition:var(--ease);position:relative}
+.ico-btn:hover{background:var(--primary-l)}
+.cart-btn{background:var(--primary);color:#fff;width:auto;padding:0 13px;font-weight:800;font-size:12px;gap:5px}
+.cart-btn:hover{background:var(--primary-d)}
+.cart-count{background:#fff;color:var(--primary);width:19px;height:19px;border-radius:50%;font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.search-wrap{display:flex;align-items:center;gap:8px;background:var(--bg);border:2px solid var(--border);border-radius:12px;padding:8px 13px;margin:0 16px 11px;transition:var(--ease)}
+.search-wrap:focus-within{border-color:var(--primary);box-shadow:0 0 0 4px var(--primary-l)}
+.search-wrap input{flex:1;border:none;background:none;font-size:13.5px;color:var(--text);outline:none}
+.search-wrap input::placeholder{color:var(--text-m)}
+/* ═══════════════════════════════════════════════
+   LANG TOGGLE
+═══════════════════════════════════════════════ */
+.lang-wrap{display:flex;background:var(--bg);border-radius:20px;padding:3px;border:1px solid var(--border)}
+.lang-btn{padding:3px 9px;border-radius:14px;border:none;background:none;font-size:10px;font-weight:800;cursor:pointer;transition:var(--ease);color:var(--text-l)}
+.lang-btn.active{background:var(--primary);color:#fff}
+/* ═══════════════════════════════════════════════
+   THEME PICKER
+═══════════════════════════════════════════════ */
+.theme-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:3000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.theme-overlay.open{opacity:1;pointer-events:all}
+.theme-panel{background:var(--card);border-radius:24px;padding:24px;width:300px;transform:scale(.92);transition:transform .3s}
+.theme-overlay.open .theme-panel{transform:scale(1)}
+.theme-ttl{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:16px;text-align:center}
+.theme-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.t-opt{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;padding:8px;border-radius:12px;border:2px solid transparent;transition:var(--ease)}
+.t-opt:hover,.t-opt.active{border-color:var(--primary);background:var(--bg)}
+.t-circle{width:38px;height:38px;border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.t-lbl{font-size:9px;font-weight:700;color:var(--text-l)}
+/* ═══════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════ */
+.hero{background:var(--hero);padding:44px 20px;position:relative;overflow:hidden;min-height:360px;display:flex;align-items:center}
+.h-blob{position:absolute;border-radius:50%;opacity:.18}
+.h-b1{width:280px;height:280px;background:#fff;top:-90px;right:-70px;animation:blob 6s ease-in-out infinite}
+.h-b2{width:180px;height:180px;background:#fff;bottom:-50px;left:-30px;animation:blob 8s ease-in-out infinite reverse}
+.h-f1{position:absolute;right:18px;top:16px;font-size:86px;opacity:.88;animation:float 4s ease-in-out infinite;filter:drop-shadow(0 10px 20px rgba(0,0,0,.3))}
+.h-f2{position:absolute;right:80px;bottom:18px;font-size:52px;opacity:.72;animation:float 5s ease-in-out infinite 1s;filter:drop-shadow(0 8px 16px rgba(0,0,0,.3))}
+.h-f3{position:absolute;right:140px;top:28px;font-size:38px;opacity:.55;animation:float 6s ease-in-out infinite 2s}
+.hero-cnt{position:relative;z-index:1;max-width:250px}
+.hero-tag{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:5px 11px;font-size:10.5px;font-weight:800;color:#fff;letter-spacing:1px;margin-bottom:12px;backdrop-filter:blur(8px)}
+.hero h1{font-family:'Playfair Display',serif;font-size:34px;font-weight:900;color:#fff;line-height:1.1;margin-bottom:10px;text-shadow:0 2px 20px rgba(0,0,0,.2)}
+.hero p{font-size:13px;color:rgba(255,255,255,.9);margin-bottom:18px;font-weight:600;line-height:1.5}
+.hero-btns{display:flex;gap:9px;flex-wrap:wrap}
+.btn-w{background:#fff;color:var(--primary);border:none;padding:11px 20px;border-radius:50px;font-weight:800;font-size:13px;cursor:pointer;transition:var(--ease);box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.btn-w:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.btn-o{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.6);padding:11px 20px;border-radius:50px;font-weight:700;font-size:13px;cursor:pointer;transition:var(--ease);backdrop-filter:blur(8px)}
+.btn-o:hover{background:rgba(255,255,255,.2);border-color:#fff}
+/* ═══════════════════════════════════════════════
+   TIMINGS STRIP
+═══════════════════════════════════════════════ */
+.timings{background:var(--card);border-bottom:1px solid var(--border);padding:9px 16px;display:flex;align-items:center;justify-content:center;gap:18px;font-size:11.5px;font-weight:700;color:var(--text-l);flex-wrap:wrap}
+.t-slot{display:flex;align-items:center;gap:4px}
+/* ═══════════════════════════════════════════════
+   TODAY'S SPECIAL
+═══════════════════════════════════════════════ */
+.special-sec{padding:18px 16px 6px}
+.sec-ttl{display:flex;align-items:center;gap:7px;font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:12px}
+.sec-ttl span{color:var(--primary)}
+.special-card{background:var(--hero);border-radius:20px;padding:20px;display:flex;align-items:center;justify-content:space-between;overflow:hidden;position:relative;box-shadow:0 6px 30px var(--shadow);animation:shimmer 3s ease-in-out infinite}
+.sp-cnt{position:relative;z-index:1}
+.sp-tag{background:rgba(255,255,255,.25);color:#fff;padding:3px 10px;border-radius:20px;font-size:9.5px;font-weight:800;letter-spacing:1.5px;margin-bottom:8px;display:inline-block}
+.sp-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:4px}
+.sp-price{font-size:18px;font-weight:800;color:rgba(255,255,255,.92);margin-bottom:14px}
+.sp-emoji{font-size:90px;position:relative;z-index:1;animation:float 3s ease-in-out infinite;filter:drop-shadow(0 10px 20px rgba(0,0,0,.3));flex-shrink:0}
+/* ═══════════════════════════════════════════════
+   CATEGORIES
+═══════════════════════════════════════════════ */
+.cats-sec{padding:16px 16px 6px}
+.cats-scroll{display:flex;gap:9px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.cats-scroll::-webkit-scrollbar{display:none}
+.cat-btn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 14px;border-radius:14px;border:2px solid var(--border);background:var(--card);cursor:pointer;white-space:nowrap;transition:var(--ease);flex-shrink:0}
+.cat-btn:hover{border-color:var(--primary);transform:translateY(-2px)}
+.cat-btn.active{background:var(--primary);border-color:var(--primary);color:#fff;transform:translateY(-2px);box-shadow:0 4px 15px var(--shadow)}
+.cat-emo{font-size:20px}.cat-nm{font-size:10.5px;font-weight:800}
+/* ═══════════════════════════════════════════════
+   MENU
+═══════════════════════════════════════════════ */
+.menu-sec{padding:10px 16px 110px}
+.menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+@media(min-width:480px){.menu-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:768px){.menu-grid{grid-template-columns:repeat(4,1fr)}}
+.m-card{background:var(--card);border-radius:var(--rad);overflow:hidden;box-shadow:0 2px 12px var(--shadow);transition:var(--ease);position:relative}
+.m-card:hover{transform:translateY(-6px);box-shadow:0 12px 30px var(--shadow)}
+.m-card.oos{opacity:.6}
+.card-img{height:128px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:transform .4s ease}
+.m-card:hover .card-img{transform:scale(1.03)}
+.card-img .prod-emoji{font-size:58px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.3));transition:transform .3s;line-height:1}
+.m-card:hover .prod-emoji{transform:scale(1.15) translateY(-4px)}
+.card-img::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,.08);border-radius:0}
+.size-badge{position:absolute;top:7px;left:7px;background:rgba(0,0,0,.32);color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:8px;backdrop-filter:blur(4px)}
+.bs-badge{position:absolute;top:7px;right:7px;background:#FFD700;color:#5D4037;font-size:9px;font-weight:800;padding:2px 7px;border-radius:8px;display:flex;align-items:center;gap:2px}
+.oos-ov{position:absolute;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:11px;letter-spacing:1px}
+.card-body{padding:9px 11px 11px}
+.card-nm{font-size:12.5px;font-weight:700;line-height:1.3;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-foot{display:flex;align-items:center;justify-content:space-between}
+.card-price{font-size:16px;font-weight:900;color:var(--primary)}
+.card-price small{font-size:10px;font-weight:600;color:var(--text-l)}
+.add-btn{width:31px;height:31px;border-radius:9px;border:none;background:var(--primary);color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--ease);flex-shrink:0;line-height:1}
+.add-btn:hover{background:var(--primary-d);transform:scale(1.1)}
+.add-btn:disabled{background:var(--text-m);cursor:not-allowed;transform:none}
+.qty-ctrl{display:flex;align-items:center;gap:5px}
+.qty-b{width:25px;height:25px;border-radius:7px;border:2px solid var(--primary);background:transparent;color:var(--primary);font-size:15px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--ease)}
+.qty-b:hover{background:var(--primary);color:#fff}
+.qty-n{font-size:13px;font-weight:800;min-width:16px;text-align:center}
+/* ═══════════════════════════════════════════════
+   UPSELL
+═══════════════════════════════════════════════ */
+.upsell{background:var(--primary-l);border:2px dashed var(--primary);border-radius:14px;padding:13px;margin:14px 0;display:flex;align-items:center;gap:9px}
+.upsell-e{font-size:26px}.upsell-t{font-size:12.5px;font-weight:700;color:var(--primary-d)}
+/* no results */
+.no-res{text-align:center;padding:40px 20px;color:var(--text-l)}
+.no-res-e{font-size:48px;margin-bottom:10px}
+.no-res-t{font-size:15px;font-weight:700}
+/* ═══════════════════════════════════════════════
+   CART DRAWER
+═══════════════════════════════════════════════ */
+.cart-ov{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1500;opacity:0;pointer-events:none;transition:opacity .3s}
+.cart-ov.open{opacity:1;pointer-events:all}
+.cart-drawer{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-radius:24px 24px 0 0;z-index:1600;max-height:88vh;overflow-y:auto;transform:translateY(100%);transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.cart-drawer.open{transform:translateY(0)}
+.cart-handle{width:38px;height:4px;background:var(--border);border-radius:2px;margin:11px auto 0}
+.cart-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border)}
+.cart-ttl{font-family:'Playfair Display',serif;font-size:19px;font-weight:700}
+.cart-items-wrap{padding:14px 18px}
+.cart-item{display:flex;align-items:center;gap:11px;padding:10px 0;border-bottom:1px solid var(--border)}
+.ci-emo{width:46px;height:46px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.ci-info{flex:1}
+.ci-nm{font-size:12.5px;font-weight:700;margin-bottom:2px}
+.ci-note{font-size:10.5px;color:var(--text-l);font-style:italic}
+.ci-price{font-size:13px;font-weight:800;color:var(--primary);flex-shrink:0}
+.note-inp{width:100%;border:1px solid var(--border);border-radius:8px;padding:5px 9px;font-size:11.5px;color:var(--text);background:var(--bg);margin-top:6px;outline:none}
+.note-inp:focus{border-color:var(--primary)}
+.loyalty-bar{margin:13px 18px;background:var(--bg);border-radius:13px;padding:13px;border:2px solid var(--border)}
+.lb-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.lb-pts{font-size:13px;font-weight:700;color:var(--primary)}
+.redeem-btn{background:var(--primary);color:#fff;border:none;padding:5px 11px;border-radius:18px;font-size:11px;font-weight:700;cursor:pointer;transition:var(--ease)}
+.cart-tot{padding:13px 18px;border-top:2px solid var(--border)}
+.tot-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.tot-lbl{font-size:13.5px;color:var(--text-l);font-weight:600}
+.tot-val{font-size:13.5px;font-weight:700}
+.tot-grand .tot-lbl{font-size:15px;font-weight:800;color:var(--text)}
+.tot-grand .tot-val{font-size:20px;font-weight:900;color:var(--primary)}
+.checkout-btn{width:100%;background:var(--primary);color:#fff;border:none;padding:15px;border-radius:14px;font-weight:800;font-size:15px;cursor:pointer;transition:var(--ease);margin-top:13px;display:flex;align-items:center;justify-content:center;gap:7px}
+.checkout-btn:hover{background:var(--primary-d);transform:translateY(-2px)}
+.empty-cart{text-align:center;padding:40px 20px;color:var(--text-l)}
+.empty-cart-e{font-size:50px;margin-bottom:12px}
+/* ═══════════════════════════════════════════════
+   ORDER MODAL
+═══════════════════════════════════════════════ */
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:2000;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-ov.open{opacity:1;pointer-events:all}
+.modal{background:var(--card);border-radius:26px 26px 0 0;width:100%;max-height:92vh;overflow-y:auto;transform:translateY(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);padding-bottom:30px}
+.modal-ov.open .modal{transform:translateY(0)}
+.modal-hdr{padding:18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.modal-ttl{font-family:'Playfair Display',serif;font-size:19px;font-weight:700}
+.steps{display:flex;justify-content:center;gap:7px;padding:14px 18px 0}
+.step-d{width:8px;height:8px;border-radius:50%;background:var(--border);transition:var(--ease)}
+.step-d.active{background:var(--primary);width:22px;border-radius:4px}
+.modal-body{padding:18px}
+.form-grp{margin-bottom:14px}
+.form-lbl{display:block;font-size:12px;font-weight:700;color:var(--text-l);margin-bottom:6px;letter-spacing:.5px;text-transform:uppercase}
+.form-inp{width:100%;border:2px solid var(--border);border-radius:12px;padding:12px 14px;font-size:14px;color:var(--text);background:var(--bg);outline:none;transition:var(--ease)}
+.form-inp:focus{border-color:var(--primary);box-shadow:0 0 0 4px var(--primary-l)}
+.del-opts{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:14px}
+.del-opt{border:2px solid var(--border);border-radius:14px;padding:15px;cursor:pointer;transition:var(--ease);text-align:center}
+.del-opt.sel{border-color:var(--primary);background:var(--primary-l)}
+.del-opt-e{font-size:26px;margin-bottom:5px}
+.del-opt-t{font-size:13px;font-weight:800}
+.del-opt-d{font-size:10.5px;color:var(--text-l);font-weight:600;margin-top:2px;line-height:1.4}
+/* ═══════════════════════════════════════════════
+   ALLERGY WARNING
+═══════════════════════════════════════════════ */
+.allergy{background:#FFF8E1;border:2px solid #FFD54F;border-radius:14px;padding:15px;margin-bottom:14px;display:flex;gap:11px}
+.al-ico{font-size:22px;flex-shrink:0}
+.al-txt{font-size:12.5px;font-weight:600;color:#5D4037;line-height:1.5}
+.al-chk{display:flex;align-items:center;gap:7px;margin-top:9px;cursor:pointer}
+.al-chk input{width:17px;height:17px;accent-color:var(--primary);cursor:pointer}
+.al-chk span{font-size:12.5px;font-weight:700;color:var(--text)}
+/* ═══════════════════════════════════════════════
+   ORDER CONFIRMATION
+═══════════════════════════════════════════════ */
+.confirm-screen{text-align:center;padding:18px}
+.confirm-ico{width:76px;height:76px;background:#E8F5E9;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 14px;animation:bounceIn .5s ease}
+.oid-badge{display:inline-block;background:var(--primary);color:#fff;padding:7px 18px;border-radius:18px;font-weight:800;font-size:15px;margin-bottom:18px}
+.call-badge{background:linear-gradient(135deg,#FF6B35,#E91E63);border-radius:18px;padding:18px;color:#fff;margin:18px 0;position:relative;overflow:hidden}
+.call-badge::before{content:'📞';position:absolute;right:-10px;top:-10px;font-size:80px;opacity:.15}
+.call-badge-ttl{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;margin-bottom:7px}
+.call-badge-txt{font-size:12.5px;opacity:.92;font-weight:600;margin-bottom:14px;line-height:1.5}
+.call-now-btn{background:#fff;color:#E91E63;border:none;padding:13px 26px;border-radius:50px;font-weight:900;font-size:15px;cursor:pointer;transition:var(--ease);box-shadow:0 4px 20px rgba(0,0,0,.2);width:100%;display:flex;align-items:center;justify-content:center;gap:7px}
+.call-now-btn:hover{transform:translateY(-2px)}
+.rapido-note{background:var(--bg);border-radius:13px;padding:13px;margin-top:13px;font-size:12.5px;color:var(--text-l);font-weight:600;text-align:left;border:1px solid var(--border);line-height:1.6}
+.pod-tag{display:inline-flex;align-items:center;gap:5px;background:#E8F5E9;color:#2E7D32;border:1px solid #A5D6A7;border-radius:20px;padding:5px 11px;font-size:11.5px;font-weight:700;margin-top:9px}
+.pts-badge{background:linear-gradient(135deg,#FFD700,#FF8F00);color:#fff;border-radius:13px;padding:11px 14px;text-align:center;margin:11px 0;font-weight:700;font-size:13.5px}
+/* ═══════════════════════════════════════════════
+   FLOATING BTNS
+═══════════════════════════════════════════════ */
+.floats{position:fixed;right:16px;bottom:85px;z-index:900;display:flex;flex-direction:column;gap:9px}
+.float-btn{width:50px;height:50px;border-radius:14px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 20px rgba(0,0,0,.25);transition:var(--ease);text-decoration:none}
+.float-btn:hover{transform:translateY(-4px) scale(1.05)}
+.f-call{background:linear-gradient(135deg,#4CAF50,#2E7D32);color:#fff}
+.f-wa{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff}
+/* ═══════════════════════════════════════════════
+   PICKUP SECTION
+═══════════════════════════════════════════════ */
+.pickup-sec{padding:18px 16px}
+.pickup-card{background:var(--card);border-radius:18px;padding:18px;box-shadow:0 2px 12px var(--shadow)}
+.map-box{width:100%;height:200px;border-radius:13px;overflow:hidden;margin-top:13px;border:2px solid var(--border)}
+.map-box iframe{width:100%;height:100%;border:0}
+.dir-btn{display:inline-flex;align-items:center;gap:6px;background:var(--primary);color:#fff;border:none;padding:10px 18px;border-radius:50px;font-weight:700;font-size:13px;cursor:pointer;margin-top:12px;transition:var(--ease)}
+.dir-btn:hover{background:var(--primary-d)}
+/* ═══════════════════════════════════════════════
+   REVIEWS
+═══════════════════════════════════════════════ */
+.reviews-sec{padding:18px 16px}
+.reviews-scroll{display:flex;gap:13px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+.reviews-scroll::-webkit-scrollbar{display:none}
+.rev-card{background:var(--card);border-radius:15px;padding:15px;min-width:230px;box-shadow:0 2px 10px var(--shadow);flex-shrink:0}
+.rev-hdr{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.rev-av{width:36px;height:36px;border-radius:50%;background:var(--hero);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:15px;flex-shrink:0}
+.rev-nm{font-size:13px;font-weight:700}.rev-stars{color:#FFD700;font-size:11px}
+.rev-txt{font-size:12.5px;color:var(--text-l);line-height:1.5}
+/* ═══════════════════════════════════════════════
+   ORDER TRACKING
+═══════════════════════════════════════════════ */
+.track-sec{padding:18px 16px}
+.track-srch{display:flex;gap:9px;margin-bottom:15px}
+.track-inp{flex:1;border:2px solid var(--border);border-radius:12px;padding:11px 14px;font-size:14px;background:var(--bg);color:var(--text);outline:none}
+.track-inp:focus{border-color:var(--primary)}
+.track-btn{background:var(--primary);color:#fff;border:none;padding:11px 18px;border-radius:12px;font-weight:700;font-size:13px;cursor:pointer}
+.status-line{padding:8px 0}
+.s-step{display:flex;align-items:center;gap:13px;padding:11px 0;position:relative}
+.s-step:not(:last-child)::after{content:'';position:absolute;left:18px;top:43px;width:2px;height:22px;background:var(--border)}
+.s-step.done::after{background:var(--primary)}
+.s-ico{width:38px;height:38px;border-radius:50%;background:var(--border);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.s-step.done .s-ico{background:var(--primary)}
+.s-step.current .s-ico{background:var(--primary);animation:pulse 1.5s infinite}
+.s-txt{font-size:13.5px;font-weight:700}
+.s-sub{font-size:11px;color:var(--text-l)}
+/* ═══════════════════════════════════════════════
+   DIGITAL BILL MODAL
+═══════════════════════════════════════════════ */
+.bill-ov{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:4000;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .3s}
+.bill-ov.open{opacity:1;pointer-events:all}
+.bill-sheet{background:var(--card);border-radius:26px 26px 0 0;width:100%;max-height:82vh;overflow-y:auto;transform:translateY(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);padding:20px 20px 40px}
+.bill-ov.open .bill-sheet{transform:translateY(0)}
+.bill-hdr{text-align:center;padding-bottom:14px;border-bottom:2px dashed var(--border);margin-bottom:14px}
+.bill-ttl{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--primary);margin-bottom:3px}
+.bill-shop{font-size:11px;color:var(--text-l);font-weight:600}
+.bill-oid{font-size:12px;font-weight:800;color:var(--primary);margin-top:4px}
+.bill-item{display:flex;justify-content:space-between;padding:7px 0;font-size:13.5px;border-bottom:1px solid var(--border)}
+.bill-total{display:flex;justify-content:space-between;padding:11px 0;font-size:17px;font-weight:900;color:var(--primary);border-top:2px solid var(--primary)}
+.bill-foot{text-align:center;font-size:11px;color:var(--text-l);margin-top:14px;line-height:1.9}
+/* ═══════════════════════════════════════════════
+   BOTTOM NAV
+═══════════════════════════════════════════════ */
+.bot-nav{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--border);display:flex;z-index:900;padding:7px 0;box-shadow:0 -4px 20px var(--shadow)}
+.nav-it{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 0;cursor:pointer;border:none;background:none;transition:var(--ease)}
+.nav-it:hover .nav-ico{transform:translateY(-3px)}
+.nav-ico{font-size:19px;transition:var(--ease)}
+.nav-lbl{font-size:8.5px;font-weight:700;color:var(--text-m)}
+.nav-it.active .nav-lbl{color:var(--primary)}
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+footer{background:var(--text);color:rgba(255,255,255,.8);padding:28px 18px 110px;margin-top:16px}
+.foot-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:#fff;margin-bottom:6px}
+.foot-sub{font-size:11px;opacity:.5;margin-bottom:18px}
+.foot-info{font-size:13px;line-height:2}
+.foot-hr{border:none;border-top:1px solid rgba(255,255,255,.1);margin:18px 0}
+.foot-bot{font-size:10.5px;opacity:.4;text-align:center}
+/* ═══════════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════════ */
+.toast{position:fixed;top:76px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--text);color:#fff;padding:11px 20px;border-radius:50px;font-size:12.5px;font-weight:700;z-index:9999;opacity:0;transition:all .3s;white-space:nowrap;pointer-events:none}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* ═══════════════════════════════════════════════
+   CLOSED OVERLAY
+═══════════════════════════════════════════════ */
+.closed-ov{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:5000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
+.closed-card{background:var(--card);border-radius:22px;padding:36px 28px;text-align:center;max-width:310px;width:90%}
+.closed-e{font-size:58px;margin-bottom:14px}
+.closed-ttl{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:8px}
+.closed-msg{font-size:13px;color:var(--text-l);font-weight:600;line-height:1.6}
+.continue-btn{margin-top:18px;background:var(--primary);color:#fff;border:none;padding:12px 24px;border-radius:50px;font-weight:800;font-size:14px;cursor:pointer;transition:var(--ease)}
+.continue-btn:hover{background:var(--primary-d)}
+/* ═══════════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════════ */
+@keyframes slideDown{from{transform:translateY(-100%)}to{transform:translateY(0)}}
+@keyframes blob{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(18px,-18px) scale(1.05)}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-14px) rotate(5deg)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+@keyframes shimmer{0%,100%{box-shadow:0 4px 20px var(--shadow)}50%{box-shadow:0 10px 40px var(--shadow)}}
+@keyframes bounceIn{0%{transform:scale(.3);opacity:0}50%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp .45s ease forwards}
+/* SEO hidden */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BANNER -->
+<div class="announce" id="announce">
+  <span id="announce-txt">🍦 Fresh Arun Ice Creams delivered to your door in Siddipet! Order now ➜</span>
+  <button class="announce-close" onclick="document.getElementById('announce').remove()">✕</button>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="hdr-top">
+    <a href="#" class="logo" onclick="scrollToTop()">
+      <div class="logo-ico">🍦</div>
+      <div class="logo-txt">
+        <span class="logo-name" id="logo-name">Sai Bhavani Arun</span>
+        <span class="logo-sub" id="logo-sub">Ice Creams · Siddipet</span>
+      </div>
+    </a>
+    <div class="hdr-right">
+      <div class="open-badge open" id="open-badge">
+        <div class="open-dot"></div>
+        <span id="open-txt">Open</span>
+      </div>
+      <div class="lang-wrap">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('te')">తె</button>
+      </div>
+      <button class="ico-btn" onclick="openTheme()" title="Change Theme">🎨</button>
+      <button class="ico-btn cart-btn" onclick="openCart()">
+        <span>🛒</span>
+        <span class="cart-count" id="cart-count">0</span>
+      </button>
+    </div>
+  </div>
+  <div class="search-wrap">
+    <span>🔍</span>
+    <input type="text" id="search-inp" placeholder="Search ice creams..." oninput="onSearch(this.value)">
+    <button onclick="clearSearch()" style="background:none;border:none;cursor:pointer;font-size:14px;color:var(--text-m)" id="clear-search" hidden>✕</button>
+  </div>
+</header>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- THEME PICKER -->
+<div class="theme-overlay" id="theme-overlay" onclick="closeTheme(event)">
+  <div class="theme-panel">
+    <div class="theme-ttl">🎨 Choose Your Vibe</div>
+    <div class="theme-grid">
+      <div class="t-opt active" onclick="setTheme('pink')" id="t-pink">
+        <div class="t-circle" style="background:linear-gradient(135deg,#FF6B9D,#E91E63)"></div>
+        <div class="t-lbl">Pink</div>
+      </div>
+      <div class="t-opt" onclick="setTheme('orange')" id="t-orange">
+        <div class="t-circle" style="background:linear-gradient(135deg,#FFAB76,#FF6B35)"></div>
+        <div class="t-lbl">Orange</div>
+      </div>
+      <div class="t-opt" onclick="setTheme('yellow')" id="t-yellow">
+        <div class="t-circle" style="background:linear-gradient(135deg,#FFE082,#FFA000)"></div>
+        <div class="t-lbl">Yellow</div>
+      </div>
+      <div class="t-opt" onclick="setTheme('mint')" id="t-mint">
+        <div class="t-circle" style="background:linear-gradient(135deg,#4DB6AC,#00897B)"></div>
+        <div class="t-lbl">Mint</div>
+      </div>
+      <div class="t-opt" onclick="setTheme('sky')" id="t-sky">
+        <div class="t-circle" style="background:linear-gradient(135deg,#64B5F6,#1E88E5)"></div>
+        <div class="t-lbl">Sky</div>
+      </div>
+      <div class="t-opt" onclick="setTheme('dark')" id="t-dark">
+        <div class="t-circle" style="background:linear-gradient(135deg,#4A1230,#C2185B)"></div>
+        <div class="t-lbl">Dark</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CLOSED OVERLAY -->
+<div class="closed-ov" id="closed-ov" style="display:none">
+  <div class="closed-card">
+    <div class="closed-e">🌙</div>
+    <div class="closed-ttl" id="closed-ttl">We're Closed</div>
+    <div class="closed-msg" id="closed-msg">We'll be back soon! Our timings are<br>🕐 11:00 AM – 2:45 PM<br>🕔 5:00 PM – 9:00 PM</div>
+    <button class="continue-btn" onclick="document.getElementById('closed-ov').style.display='none'">Browse Menu Anyway</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="h-blob h-b1"></div>
+  <div class="h-blob h-b2"></div>
+  <div class="h-f1">🍦</div>
+  <div class="h-f2">🍫</div>
+  <div class="h-f3">⭐</div>
+  <div class="hero-cnt">
+    <div class="hero-tag">✨ <span id="h-tag">Siddipet's Favourite Ice Cream</span></div>
+    <h1 id="h-title">Scoop of Happiness</h1>
+    <p id="h-sub">Authentic Arun Ice Creams delivered fresh to your doorstep via Rapido 🛵</p>
+    <div class="hero-btns">
+      <button class="btn-w" onclick="scrollToMenu()" id="h-cta">Order Now 🍦</button>
+      <button class="btn-o" onclick="scrollToPickup()" id="h-cta2">Pickup Info 📍</button>
+    </div>
+  </div>
+</section>
+
+<!-- TIMINGS -->
+<div class="timings">
+  <div class="t-slot">🕐 <span>11:00 AM – 2:45 PM</span></div>
+  <div style="color:var(--border)">|</div>
+  <div class="t-slot">🕔 <span>5:00 PM – 9:00 PM</span></div>
+  <div style="color:var(--border)">|</div>
+  <div class="t-slot">📍 <span>Parupalliveedhi, Siddipet</span></div>
+</div>
+
+<!-- TODAY'S SPECIAL -->
+<section class="special-sec">
+  <div class="sec-ttl">⭐ <span id="sp-ttl">Today's</span> Special</div>
+  <div class="special-card" id="special-card">
+    <div class="sp-cnt">
+      <div class="sp-tag" id="sp-tag-txt">🌟 TODAY'S SPECIAL</div>
+      <div class="sp-name" id="sp-name">Butterscotch iCone</div>
+      <div class="sp-price" id="sp-price">₹60</div>
+      <button class="btn-w" style="font-size:12px;padding:9px 18px" onclick="addSpecialToCart()" id="sp-add-btn">Add to Cart 🛒</button>
+    </div>
+    <div class="sp-emoji" id="sp-emoji">🍦</div>
+  </div>
+</section>
+
+<!-- FLAVOUR OF THE WEEK -->
+<section class="special-sec" style="padding-top:0">
+  <div class="sec-ttl">🔥 <span>Flavour of</span> the Week</div>
+  <div id="fotw-scroll" style="display:flex;gap:11px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none"></div>
+</section>
+
+<!-- TOP RATED -->
+<section class="special-sec" style="padding-top:0">
+  <div class="sec-ttl">⭐ <span>Top</span> Rated</div>
+  <div id="toprated-scroll" style="display:flex;gap:11px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none"></div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="cats-sec" id="menu">
+  <div class="cats-scroll" id="cats-scroll"></div>
+</section>
+
+<!-- MENU GRID -->
+<section class="menu-sec">
+  <div class="menu-grid" id="menu-grid"></div>
+  <div class="no-res" id="no-res" style="display:none">
+    <div class="no-res-e">🔍</div>
+    <div class="no-res-t" id="no-res-t">No ice creams found</div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-sec" id="reviews">
+  <div class="sec-ttl">💬 <span>Customer</span> Reviews</div>
+  <div class="reviews-scroll" id="reviews-list"></div>
+</section>
+
+<!-- PICKUP / MAP -->
+<section class="pickup-sec" id="pickup">
+  <div class="sec-ttl">📍 <span>Visit</span> Our Shop</div>
+  <div class="pickup-card">
+    <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:5px" id="pickup-ttl">🛵 Skip delivery — come pick up fresh!</div>
+    <div style="font-size:12.5px;color:var(--text-l);font-weight:600;line-height:1.6" id="pickup-addr">📌 Parupalliveedhi, Siddipet, Telangana 502103<br>📞 9553199868</div>
+    <div class="map-box">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d237.01457870647502!2d78.85795517050711!3d18.107016335239724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcced4bb3005015%3A0x3559e3bac130d041!2s4V45%2BQ4G%2C%20Parupalliveedhi%2C%20Siddipet%2C%20Telangana%20502103!5e0!3m2!1sen!2sin!4v1777715153248!5m2!1sen!2sin" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <button class="dir-btn" onclick="window.open('https://maps.google.com/?q=18.107016,78.857955','_blank')">📍 Get Directions</button>
+  </div>
+</section>
+
+<!-- ORDER TRACKING -->
+<section class="track-sec" id="orders">
+  <div class="sec-ttl">📦 <span>Track</span> Your Order</div>
+  <div class="track-srch">
+    <input class="track-inp" id="track-inp" placeholder="Enter your Order ID e.g. #1042" />
+    <button class="track-btn" onclick="trackOrder()">Track</button>
+  </div>
+  <div class="status-line" id="status-line" style="display:none"></div>
+  <div style="font-size:12.5px;color:var(--text-l);font-weight:600;text-align:center" id="track-hint">Enter your Order ID to see live status</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-logo">🍦 Sai Bhavani Arun Ice Creams</div>
+  <div class="foot-sub">Siddipet's Favourite — Authentic Arun Ice Creams</div>
+  <div class="foot-info">
+    📍 Parupalliveedhi, Siddipet, Telangana 502103<br>
+    📞 <a href="tel:9553199868" style="color:inherit">9553199868</a><br>
+    💬 <a href="https://wa.me/919553199868" target="_blank" style="color:inherit">WhatsApp Us</a><br>
+    🕐 11:00 AM – 2:45 PM &nbsp;|&nbsp; 5:00 PM – 9:00 PM
+  </div>
+  <hr class="foot-hr">
+  <div class="foot-bot">© 2025 Sai Bhavani Arun Ice Creams. All rights reserved. Powered by Arun Ice Creams.</div>
+</footer>
+
+<!-- BOTTOM NAV -->
+<nav class="bot-nav">
+  <button class="nav-it active" onclick="navTo('home',this)"><div class="nav-ico">🏠</div><div class="nav-lbl" id="n-home">Home</div></button>
+  <button class="nav-it" onclick="navTo('menu',this)"><div class="nav-ico">🍦</div><div class="nav-lbl" id="n-menu">Menu</div></button>
+  <button class="nav-it" onclick="openCart()"><div class="nav-ico">🛒</div><div class="nav-lbl" id="n-cart">Cart</div></button>
+  <button class="nav-it" onclick="navTo('orders',this)"><div class="nav-ico">📦</div><div class="nav-lbl" id="n-orders">Orders</div></button>
+  <button class="nav-it" onclick="navTo('pickup',this)"><div class="nav-ico">📍</div><div class="nav-lbl" id="n-contact">Contact</div></button>
+</nav>
+
+<!-- FLOATING BUTTONS -->
+<div class="floats">
+  <a href="tel:9553199868" class="float-btn f-call" title="Call Us">📞</a>
+  <a href="https://wa.me/919553199868" target="_blank" class="float-btn f-wa" title="WhatsApp">💬</a>
+</div>
+
+<!-- CART DRAWER -->
+<div class="cart-ov" id="cart-ov" onclick="closeCart(event)"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-handle"></div>
+  <div class="cart-hdr">
+    <div class="cart-ttl" id="cart-ttl-txt">🛒 Your Cart</div>
+    <button class="ico-btn" onclick="closeCartDrawer()">✕</button>
+  </div>
+  <div id="cart-content"></div>
+</div>
+
+<!-- ORDER MODAL -->
+<div class="modal-ov" id="modal-ov">
+  <div class="modal" id="order-modal">
+    <div class="cart-handle"></div>
+    <div class="modal-hdr">
+      <div class="modal-ttl" id="modal-ttl">Place Order</div>
+      <button class="ico-btn" onclick="closeModal()">✕</button>
+    </div>
+    <div class="steps" id="steps-ind"></div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<!-- DIGITAL BILL -->
+<div class="bill-ov" id="bill-ov" onclick="closeBill(event)">
+  <div class="bill-sheet">
+    <div class="cart-handle"></div>
+    <div class="bill-hdr">
+      <div class="bill-ttl">🍦 Sai Bhavani Arun</div>
+      <div class="bill-shop">Parupalliveedhi, Siddipet · 9553199868</div>
+      <div class="bill-oid" id="bill-oid"></div>
+    </div>
+    <div id="bill-items"></div>
+    <div class="bill-total" id="bill-total"></div>
+    <div class="bill-foot" id="bill-foot">
+      🙏 Thank you for your order!<br>
+      📞 Call 9553199868 to confirm & book Rapido<br>
+      Pay on Delivery · Rapido fare charged separately
+    </div>
+    <button style="width:100%;margin-top:16px;background:var(--primary);color:#fff;border:none;padding:13px;border-radius:13px;font-weight:800;font-size:14px;cursor:pointer" onclick="closeBillSheet()">Close Bill</button>
+  </div>
+</div>
+
+<!-- FIREBASE + APP SCRIPT -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, collection, addDoc, doc, getDoc, setDoc, updateDoc, query, where, getDocs, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDcwG0XStTbUd3lp9tEn5OODAWzrs4P5QM",
+  authDomain: "icecream-3a8f0.firebaseapp.com",
+  projectId: "icecream-3a8f0",
+  storageBucket: "icecream-3a8f0.firebasestorage.app",
+  messagingSenderId: "542050827725",
+  appId: "1:542050827725:web:f2853c25ebe963aa4b9884",
+  measurementId: "G-BM4MVMVLE7"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+window._db = db;
+window._fs = { collection, addDoc, doc, getDoc, setDoc, updateDoc, query, where, getDocs, onSnapshot, serverTimestamp };
+
+// Load announcement from Firestore
+try {
+  const settingsDoc = await getDoc(doc(db, 'settings', 'shop'));
+  if (settingsDoc.exists()) {
+    const d = settingsDoc.data();
+    if (d.announcement) document.getElementById('announce-txt').textContent = '📢 ' + d.announcement;
+    if (d.todaySpecial) {
+      const item = MENU.items.find(i => i.id === d.todaySpecial);
+      if (item) setTodaySpecial(item);
+    }
+  }
+} catch(e) { console.log('Firestore load:', e.message); }
+
+// Listen to shop open/close
+try {
+  onSnapshot(doc(db, 'settings', 'shop'), (snap) => {
+    if (snap.exists() && snap.data().isOpen !== undefined) {
+      updateOpenBadge(snap.data().isOpen);
+    }
+  });
+} catch(e) {}
+
+window._saveOrder = async (orderData) => {
+  try {
+    const ref = await addDoc(collection(db, 'orders'), { ...orderData, createdAt: serverTimestamp() });
+    // Update customer loyalty
+    try {
+      const custRef = doc(db, 'customers', orderData.phone);
+      const custSnap = await getDoc(custRef);
+      const earnedPts = Math.floor(orderData.total / 10);
+      if (custSnap.exists()) {
+        const prev = custSnap.data().points || 0;
+        await updateDoc(custRef, { points: prev + earnedPts, lastOrder: serverTimestamp(), name: orderData.customerName, totalOrders: (custSnap.data().totalOrders || 0) + 1 });
+      } else {
+        await setDoc(custRef, { name: orderData.customerName, phone: orderData.phone, points: earnedPts, totalOrders: 1, lastOrder: serverTimestamp() });
+      }
+    } catch(e) {}
+    return ref.id;
+  } catch(e) { return null; }
+};
+
+window._getCustomer = async (phone) => {
+  try {
+    const snap = await getDoc(doc(db, 'customers', phone));
+    return snap.exists() ? snap.data() : null;
+  } catch(e) { return null; }
+};
+
+window._getOrder = async (orderId) => {
+  try {
+    const snap = await getDoc(doc(db, 'orders', orderId));
+    return snap.exists() ? { id: snap.id, ...snap.data() } : null;
+  } catch(e) { return null; }
+};
+</script>
+
+<script>
+// ═══════════════════════════════════════════════
+// MENU DATA
+// ═══════════════════════════════════════════════
+const MENU = {
+  categories: [
+    { id:'all', name:'All', te:'అన్నీ', emoji:'🌟' },
+    { id:'bars', name:'Bars', te:'బార్లు', emoji:'🍫' },
+    { id:'cups', name:'Cups', te:'కప్పులు', emoji:'🍨' },
+    { id:'tubs', name:'Tubs', te:'టబ్బులు', emoji:'🪣' },
+    { id:'cones', name:'Cones', te:'కోన్లు', emoji:'🍦' },
+    { id:'shakes', name:'Shakes', te:'షేక్లు', emoji:'🥤' },
+    { id:'sliceit', name:'Slice It', te:'స్లైస్ ఇట్', emoji:'🍰' },
+    { id:'bites', name:'Bites', te:'బైట్స్', emoji:'🍬' },
+    { id:'sandwiches', name:'Sandwiches', te:'శాండ్విచ్లు', emoji:'🥪' },
+    { id:'others', name:'Others', te:'ఇతరాలు', emoji:'🎂' },
+  ],
+  items: [
+    // ── BARS ──
+    {id:'b1',name:'Chocobar',te:'చాకోబార్',price:30,cat:'bars',best:true,emoji:'🍫',img:'https://arunicecreams.in/images/bars/chocolate.jpg',bg:'linear-gradient(135deg,#5D4037,#8D6E63)'},
+    {id:'b2',name:'Fun Wheel',te:'ఫన్ వీల్',price:30,cat:'bars',emoji:'🎡',img:'https://arunicecreams.in/images/kids-bar/fun-wheel.jpg',bg:'linear-gradient(135deg,#E91E63,#F06292)'},
+    {id:'b3',name:'Watermelon Bar',te:'వాటర్‌మెలన్ బార్',price:30,cat:'bars',emoji:'🍉',img:'https://arunicecreams.in/images/bars/water-lemon.png',bg:'linear-gradient(135deg,#C62828,#FFCDD2)'},
+    {id:'b4',name:'Jolly Train',te:'జాలీ ట్రెయిన్',price:30,cat:'bars',emoji:'🚂',img:'https://arunicecreams.in/images/kids-bar/jolly-train.jpg',bg:'linear-gradient(135deg,#F57F17,#FFB300)'},
+    {id:'b5',name:'Little Love',te:'లిటిల్ లవ్',price:30,cat:'bars',emoji:'❤️',img:'https://arunicecreams.in/images/bars/Little-Love.jpg',bg:'linear-gradient(135deg,#B71C1C,#EF9A9A)'},
+    {id:'b6',name:'Spiral Wildberry Pineapple Vanilla',te:'స్పైరల్ వైల్డ్‌బెర్రీ',price:30,cat:'bars',emoji:'🫐',img:'https://arunicecreams.in/images/kids-bar/spiral-wildberry-vanilla-pinepple.jpg',bg:'linear-gradient(135deg,#6A1B9A,#CE93D8)'},
+    {id:'b7',name:'Mini Chocobar',te:'మినీ చాకోబార్',price:20,cat:'bars',emoji:'🍫',img:'https://arunicecreams.in/images/bars/chocolate.jpg',bg:'linear-gradient(135deg,#4E342E,#795548)'},
+    {id:'b8',name:'Likstick Grape',te:'లిక్‌స్టిక్ గ్రేప్',price:15,cat:'bars',emoji:'🍇',img:'https://arunicecreams.in/images/bars/lipstick-grape.jpg',bg:'linear-gradient(135deg,#4527A0,#9575CD)'},
+    {id:'b9',name:'Likstick Orange',te:'లిక్‌స్టిక్ ఆరెంజ్',price:15,cat:'bars',emoji:'🍊',img:'https://arunicecreams.in/images/bars/lipstick-orange.jpg',bg:'linear-gradient(135deg,#E65100,#FF8F00)'},
+    {id:'b10',name:'Likstick Mango',te:'లిక్‌స్టిక్ మాంగో',price:15,cat:'bars',emoji:'🥭',img:'https://arunicecreams.in/images/bars/lipstick-orange.jpg',bg:'linear-gradient(135deg,#FF8F00,#FFD54F)'},
+    {id:'b11',name:'Likstick Apple',te:'లిక్‌స్టిక్ యాపిల్',price:15,cat:'bars',emoji:'🍎',img:'https://arunicecreams.in/images/bars/lipstick-grape.jpg',bg:'linear-gradient(135deg,#C62828,#FFCDD2)'},
+    // ── CUPS ──
+    {id:'c1',name:'Blackcurrant Cup',te:'బ్లాక్‌కరెంట్ కప్',price:60,cat:'cups',best:true,emoji:'🫐',img:'https://arunicecreams.in/images/cups/chocolate-cup.jpg',bg:'linear-gradient(135deg,#4A148C,#9C27B0)',size:'125ml'},
+    {id:'c2',name:'Italian Delight Cup',te:'ఇటాలియన్ డెలైట్ కప్',price:60,cat:'cups',emoji:'🍨',img:'https://arunicecreams.in/images/cups/vanilla-regular.jpg',bg:'linear-gradient(135deg,#1565C0,#42A5F5)',size:'125ml'},
+    {id:'c3',name:'Kulfi Maharaj Cup',te:'కుల్ఫీ మహారాజ్ కప్',price:60,cat:'cups',emoji:'👑',img:'https://arunicecreams.in/images/cups/butterscotch-cup.jpg',bg:'linear-gradient(135deg,#BF360C,#FF7043)',size:'125ml'},
+    {id:'c4',name:'Butterscotch Cup',te:'బటర్‌స్కాచ్ కప్',price:50,cat:'cups',best:true,emoji:'🧈',img:'https://arunicecreams.in/images/cups/butterscotch-cup.jpg',bg:'linear-gradient(135deg,#E65100,#FFB300)',size:'125ml'},
+    {id:'c5',name:'Mango Cup',te:'మాంగో కప్',price:50,cat:'cups',emoji:'🥭',img:'https://arunicecreams.in/images/cups/butterscotch-cup.jpg',bg:'linear-gradient(135deg,#FF6F00,#FFCA28)',size:'125ml'},
+    {id:'c6',name:'Kesar Pista Cup',te:'కేసర్ పిస్తా కప్',price:50,cat:'cups',emoji:'🌿',img:'https://arunicecreams.in/images/cups/vanilla-regular.jpg',bg:'linear-gradient(135deg,#1B5E20,#66BB6A)',size:'125ml'},
+    {id:'c7',name:'Vanilla Cup',te:'వెనిల్లా కప్',price:50,cat:'cups',emoji:'🍦',img:'https://arunicecreams.in/images/cups/vanilla-regular.jpg',bg:'linear-gradient(135deg,#F9A825,#FFF9C4)',size:'125ml'},
+    // ── TUBS 1000ml ──
+    {id:'t1',name:'Almond Crisp Tub',te:'ఆల్మండ్ క్రిస్ప్ టబ్',price:360,cat:'tubs',emoji:'🥜',img:'https://arunicecreams.in/images/cups/butterscotch-cup.jpg',bg:'linear-gradient(135deg,#5D4037,#A1887F)',size:'1000ml'},
+    {id:'t2',name:'Dark Chocolate Tub',te:'డార్క్ చాకొలెట్ టబ్',price:360,cat:'tubs',best:true,emoji:'🍫',img:'https://arunicecreams.in/images/cups/chocolate-cup.jpg',bg:'linear-gradient(135deg,#3E2723,#6D4C41)',size:'1000ml'},
+    {id:'t3',name:'Italian Delight Tub',te:'ఇటాలియన్ డెలైట్ టబ్',price:360,cat:'tubs',emoji:'🍨',img:'https://arunicecreams.in/images/cups/vanilla-regular.jpg',bg:'linear-gradient(135deg,#1565C0,#42A5F5)',size:'1000ml'},
+    {id:'t4',name:'Butterscotch Tub 1L',te:'బటర్‌స్కాచ్ టబ్ 1L',price:350,cat:'tubs',emoji:'🧈',img:'https://arunicecreams.in/images/cups/butterscotch-cup.jpg',bg:'linear-gradient(135deg,#E65100,#FFB300)',size:'1000ml'},
+    {id:'t5',name:'Strawberry Blast Tub',te:'స్ట్రాబెర్రీ బ్లాస్ట్ టబ్',price:330,cat:'tubs',emoji:'🍓',img:'https://arunicecreams.in/images/cups/CUPS-Strawberry.jpg',bg:'linear-gradient(135deg,#B71C1C,#F06292)',size:'1000ml'},
+    {id:'t6',name:'Blueberry & Cheese Duet',te:'బ్లూబెర్రీ & చీజ్ డ్యూయట్',price:330,cat:'tubs',emoji:'🫐',img:'https://arunicecreams.in/images/cups/chocolate-cup.jpg',bg:'linear-gradient(135deg,#1A237E,#7986CB)',size:'1000ml'},
+    {id:'t7',name:'Red Velvet & Salted Caramel',te:'రెడ్ వెల్వెట్ & కారామెల్',price:330,cat:'tubs',emoji:'🎂',img:'https://arunicecreams.in/images/cups/CUPS-Strawberry.jpg',bg:'linear-gradient(135deg,#B71C1C,#EF9A9A)',size:'1000ml'},
+    {id:'t8',name:'Vanilla Tub 1L',te:'వెనిల్లా టబ్ 1L',price:300,cat:'tubs',emoji:'🍦',img:'https://arunicecreams.in/images/cups/vanilla-regular.jpg',bg:'linear-gradient(135deg,#F9A825,#FFFDE7)',size:'1000ml'},
+    // ── TUBS 500ml ──
+    {id:'t9',name:'Rajbhog Tub',te:'రాజ్‌భోగ్ టబ్',price:220,cat:'tubs',emoji:'🧡',img:'https://arunicecreams.in/images/cups/butterscotch-cup.jpg',bg:'linear-gradient(135deg,#E65100,#FFCA28)',size:'500ml'},
+    {id:'t10',name:'Vanilla & Blackcurrant Dual',te:'వెనిల్లా & బ్లాక్‌కరెంట్ డ్యూయల్',price:200,cat:'tubs',emoji:'🫐',img:'https://arunicecreams.in/images/cups/vanilla-regular.jpg',bg:'linear-gradient(135deg,#4A148C,#F3E5F5)',size:'500ml'},
+    {id:'t11',name:'Butterscotch & Choc Dual',te:'బటర్‌స్కాచ్ & చాకొలెట్ డ్యూయల్',price:200,cat:'tubs',best:true,emoji:'🍫',img:'https://arunicecreams.in/images/cups/butterscotch-cup.jpg',bg:'linear-gradient(135deg,#4E342E,#FFB300)',size:'500ml'},
+    {id:'t12',name:'Gajar Ka Halwa Tub',te:'గాజర్ కా హల్వా టబ్',price:200,cat:'tubs',emoji:'🥕',img:'https://arunicecreams.in/images/cups/butterscotch-cup.jpg',bg:'linear-gradient(135deg,#BF360C,#FF7043)',size:'500ml'},
+    {id:'t13',name:'Butterscotch Tub 500ml',te:'బటర్‌స్కాచ్ టబ్ 500ml',price:200,cat:'tubs',emoji:'🧈',img:'https://arunicecreams.in/images/cups/butterscotch-cup.jpg',bg:'linear-gradient(135deg,#E65100,#FFB300)',size:'500ml'},
+    {id:'t14',name:'Mango Tub 500ml',te:'మాంగో టబ్ 500ml',price:200,cat:'tubs',emoji:'🥭',img:'https://arunicecreams.in/images/cups/butterscotch-cup.jpg',bg:'linear-gradient(135deg,#FF6F00,#FFCA28)',size:'500ml'},
+    {id:'t15',name:'Chocolate Tub 500ml',te:'చాకొలెట్ టబ్ 500ml',price:200,cat:'tubs',emoji:'🍫',img:'https://arunicecreams.in/images/cups/chocolate-cup.jpg',bg:'linear-gradient(135deg,#4E342E,#795548)',size:'500ml'},
+    {id:'t16',name:'Strawberry Tub 500ml',te:'స్ట్రాబెర్రీ టబ్ 500ml',price:170,cat:'tubs',emoji:'🍓',img:'https://arunicecreams.in/images/cups/CUPS-Strawberry.jpg',bg:'linear-gradient(135deg,#B71C1C,#F06292)',size:'500ml'},
+    {id:'t17',name:'Vanilla Tub 500ml',te:'వెనిల్లా టబ్ 500ml',price:170,cat:'tubs',emoji:'🍦',img:'https://arunicecreams.in/images/cups/vanilla-regular.jpg',bg:'linear-gradient(135deg,#F9A825,#FFFDE7)',size:'500ml'},
+    // ── TUBS 250ml ──
+    {id:'t18',name:'Butterscotch Tub 250ml',te:'బటర్‌స్కాచ్ టబ్ 250ml',price:100,cat:'tubs',emoji:'🧈',img:'https://arunicecreams.in/images/cups/butterscotch-cup.jpg',bg:'linear-gradient(135deg,#E65100,#FFB300)',size:'250ml'},
+    {id:'t19',name:'Vanilla Tub 250ml',te:'వెనిల్లా టబ్ 250ml',price:90,cat:'tubs',emoji:'🍦',img:'https://arunicecreams.in/images/cups/vanilla-regular.jpg',bg:'linear-gradient(135deg,#F9A825,#FFFDE7)',size:'250ml'},
+    // ── CONES ──
+    {id:'cn1',name:'Butterscotch iCone',te:'బటర్‌స్కాచ్ ఐకోన్',price:60,cat:'cones',best:true,emoji:'🍦',img:'https://arunicecreams.in/images/icone/butterscotch.jpg',bg:'linear-gradient(135deg,#E65100,#FFB300)',size:'100ml'},
+    {id:'cn2',name:'Belgian Chocolate iCone',te:'బెల్జియన్ చాకొలెట్ ఐకోన్',price:60,cat:'cones',emoji:'🍫',img:'https://arunicecreams.in/images/icone/latest/belgium.jpg',bg:'linear-gradient(135deg,#3E2723,#8D6E63)',size:'100ml'},
+    {id:'cn3',name:'Double Chocolate iCone',te:'డబుల్ చాకొలెట్ ఐకోన్',price:60,cat:'cones',emoji:'🍦',img:'https://arunicecreams.in/images/icone/double-chocolate.jpg',bg:'linear-gradient(135deg,#1A1A1A,#5D4037)',size:'100ml'},
+    {id:'cn4',name:'Red Velvet iCone',te:'రెడ్ వెల్వెట్ ఐకోన్',price:50,cat:'cones',emoji:'🎂',img:'https://arunicecreams.in/images/icone/latest/red-velvet.jpg',bg:'linear-gradient(135deg,#B71C1C,#F48FB1)',size:'100ml'},
+    {id:'cn5',name:'Kesar Pista iCone',te:'కేసర్ పిస్తా ఐకోన్',price:40,cat:'cones',emoji:'🌿',img:'https://arunicecreams.in/images/icone/latest/kesar-pista-cone-50ml.jpg',bg:'linear-gradient(135deg,#1B5E20,#81C784)',size:'50ml'},
+    {id:'cn6',name:'Vanilla iCone',te:'వెనిల్లా ఐకోన్',price:40,cat:'cones',emoji:'🍦',img:'https://arunicecreams.in/images/icone/regular-vanilla.jpg',bg:'linear-gradient(135deg,#F9A825,#FFFDE7)',size:'50ml'},
+    {id:'cn7',name:'Chocolate iCone',te:'చాకొలెట్ ఐకోన్',price:40,cat:'cones',emoji:'🍫',img:'https://arunicecreams.in/images/icone/regular-chocolate.jpg',bg:'linear-gradient(135deg,#4E342E,#A1887F)',size:'50ml'},
+    {id:'cn8',name:'Cotton Candy iCone',te:'కాటన్ క్యాండీ ఐకోన్',price:40,cat:'cones',emoji:'🩷',img:'https://arunicecreams.in/images/icone/latest/cotton-candy-cone.jpg',bg:'linear-gradient(135deg,#E91E63,#CE93D8)',size:'50ml'},
+    {id:'cn9',name:'Toffee Cone Mini',te:'టోఫీ కోన్ మినీ',price:20,cat:'cones',emoji:'🍬',img:'https://arunicecreams.in/images/icone/regular-vanilla.jpg',bg:'linear-gradient(135deg,#E65100,#FFCC02)',size:'Mini'},
+    {id:'cn10',name:'Mango Cone Mini',te:'మాంగో కోన్ మినీ',price:20,cat:'cones',emoji:'🥭',img:'https://arunicecreams.in/images/icone/regular-chocolate.jpg',bg:'linear-gradient(135deg,#FF6F00,#FFCA28)',size:'Mini'},
+    // ── SHAKES ──
+    {id:'s1',name:'Mango Shake',te:'మాంగో షేక్',price:40,cat:'shakes',best:true,emoji:'🥭',img:'https://arunicecreams.in/images/shakes/icecream-shake-1.png',bg:'linear-gradient(135deg,#FF6F00,#FFCA28)'},
+    {id:'s2',name:'Chocolate Shake',te:'చాకొలెట్ షేక్',price:40,cat:'shakes',emoji:'🍫',img:'https://arunicecreams.in/images/shakes/icecream-shake-2.png',bg:'linear-gradient(135deg,#4E342E,#8D6E63)'},
+    {id:'s3',name:'Strawberry Shake',te:'స్ట్రాబెర్రీ షేక్',price:40,cat:'shakes',emoji:'🍓',img:'https://arunicecreams.in/images/shakes/icecream-shake-1-1.png',bg:'linear-gradient(135deg,#B71C1C,#F06292)'},
+    // ── SLICE IT ──
+    {id:'sl1',name:'Choc Vanilla Strawberry Slice',te:'చాక్ వెనిల్లా స్ట్రాబెర్రీ స్లైస్',price:380,cat:'sliceit',emoji:'🍰',img:'https://arunicecreams.in/images/cups/CUPS-Strawberry.jpg',bg:'linear-gradient(135deg,#4E342E,#F48FB1)'},
+    {id:'sl2',name:'Blackcurrant Strawberry Mango Slice',te:'బ్లాక్‌కరెంట్ స్ట్రాబెర్రీ మాంగో స్లైస్',price:330,cat:'sliceit',emoji:'🍰',img:'https://arunicecreams.in/images/cups/CUPS-Strawberry.jpg',bg:'linear-gradient(135deg,#4A148C,#FFCA28)'},
+    // ── BITES ──
+    {id:'bt1',name:'Lychee Bite',te:'లిచీ బైట్',price:10,cat:'bites',emoji:'🍡',img:'https://arunicecreams.in/images/cups/vanilla-regular.jpg',bg:'linear-gradient(135deg,#AD1457,#F48FB1)'},
+    {id:'bt2',name:'Vanilla Bite',te:'వెనిల్లా బైట్',price:10,cat:'bites',emoji:'🍦',img:'https://arunicecreams.in/images/cups/vanilla-regular.jpg',bg:'linear-gradient(135deg,#F9A825,#FFFDE7)'},
+    {id:'bt3',name:'Raspberry Bite',te:'రాస్ప్‌బెర్రీ బైట్',price:10,cat:'bites',emoji:'🫐',img:'https://arunicecreams.in/images/cups/CUPS-Strawberry.jpg',bg:'linear-gradient(135deg,#880E4F,#F48FB1)'},
+    {id:'bt4',name:'Choco Red Velvet Bite',te:'చాకో రెడ్ వెల్వెట్ బైట్',price:10,cat:'bites',emoji:'🍫',img:'https://arunicecreams.in/images/cups/chocolate-cup.jpg',bg:'linear-gradient(135deg,#B71C1C,#5D4037)'},
+    {id:'bt5',name:'Choco Toffee Bite',te:'చాకో టోఫీ బైట్',price:5,cat:'bites',emoji:'🍬',img:'https://arunicecreams.in/images/bars/chocolate.jpg',bg:'linear-gradient(135deg,#4E342E,#FFCC02)'},
+    {id:'bt6',name:'Cotton Candy Bite',te:'కాటన్ క్యాండీ బైట్',price:5,cat:'bites',emoji:'🩷',img:'https://arunicecreams.in/images/icone/latest/cotton-candy-cone.jpg',bg:'linear-gradient(135deg,#E91E63,#B2EBF2)'},
+    // ── SANDWICHES ──
+    {id:'sw1',name:'Red Velvet Sandwich',te:'రెడ్ వెల్వెట్ శాండ్విచ్',price:40,cat:'sandwiches',emoji:'🥪',img:'https://arunicecreams.in/images/icone/latest/red-velvet.jpg',bg:'linear-gradient(135deg,#B71C1C,#F48FB1)'},
+    {id:'sw2',name:'Cookie & Cream Sandwich',te:'కుకీ & క్రీమ్ శాండ్విచ్',price:30,cat:'sandwiches',best:true,emoji:'🍪',img:'https://arunicecreams.in/images/cups/chocolate-cup.jpg',bg:'linear-gradient(135deg,#212121,#757575)'},
+    {id:'sw3',name:'Choco Caramel Peanut Ripple',te:'చాకో కారామెల్ పీనట్ రిపుల్',price:30,cat:'sandwiches',emoji:'🥜',img:'https://arunicecreams.in/images/bars/chocolate.jpg',bg:'linear-gradient(135deg,#4E342E,#FFCC02)'},
+    {id:'sw4',name:'Belgian Choc Sandwich',te:'బెల్జియన్ చాకొలెట్ శాండ్విచ్',price:25,cat:'sandwiches',emoji:'🍫',img:'https://arunicecreams.in/images/icone/latest/belgium.jpg',bg:'linear-gradient(135deg,#3E2723,#6D4C41)'},
+    {id:'sw5',name:'Butterscotch Sandwich',te:'బటర్‌స్కాచ్ శాండ్విచ్',price:15,cat:'sandwiches',emoji:'🧈',img:'https://arunicecreams.in/images/icone/butterscotch.jpg',bg:'linear-gradient(135deg,#E65100,#FFB300)'},
+    // ── OTHERS ──
+    {id:'o1',name:'Cake Slice',te:'కేక్ స్లైస్',price:80,cat:'others',emoji:'🎂',img:'https://arunicecreams.in/images/cups/CUPS-Strawberry.jpg',bg:'linear-gradient(135deg,#E91E63,#F8BBD9)'},
+    {id:'o2',name:'Cassata Slice',te:'కసాటా స్లైస్',price:80,cat:'others',emoji:'🍰',img:'https://arunicecreams.in/images/cups/vanilla-regular.jpg',bg:'linear-gradient(135deg,#1565C0,#F48FB1)'},
+  ]
+};
+
+// REVIEWS DATA
+const REVIEWS = [
+  { name:'Ravi Kumar', init:'R', stars:5, text:'Amazing ice creams! Butterscotch cone is my favourite. Very fresh and delicious 🍦', item:'Butterscotch iCone' },
+  { name:'Priya Reddy', init:'P', stars:5, text:'Dark Chocolate tub is heavenly! My whole family loves it. Will order again soon!', item:'Dark Chocolate Tub' },
+  { name:'Suresh Babu', init:'S', stars:5, text:'Best Arun ice cream shop in Siddipet. Fast delivery via Rapido. Highly recommend!', item:'Mango Shake' },
+  { name:'Lakshmi Devi', init:'L', stars:5, text:'Mango shake is to die for! Tastes just like real mangoes. Fresh daily stock 😍', item:'Mango Shake' },
+  { name:'Karthik', init:'K', stars:4, text:'Great variety of ice creams. Cookie & Cream sandwich is a must try! Quick service.', item:'Cookie & Cream Sandwich' },
+];
+
+// STATE
+let cart = [];
+let activeCat = 'all';
+let lang = 'en';
+let currentStep = 1;
+let orderData = {};
+let loyaltyPts = 0;
+let redeemed = false;
+
+// ═══════════════════════════════════════════════
+// TRANSLATIONS
+// ═══════════════════════════════════════════════
+const T = {
+  en: {
+    'h-tag':'Siddipet\'s Favourite Ice Cream','h-title':'Scoop of\nHappiness','h-sub':'Authentic Arun Ice Creams delivered fresh to your doorstep via Rapido 🛵','h-cta':'Order Now 🍦','h-cta2':'Pickup Info 📍',
+    'sp-ttl':'Today\'s','logo-name':'Sai Bhavani Arun','logo-sub':'Ice Creams · Siddipet',
+    'n-home':'Home','n-menu':'Menu','n-cart':'Cart','n-orders':'Orders','n-contact':'Contact',
+    'cart-ttl-txt':'🛒 Your Cart','modal-ttl':'Place Order',
+    'pickup-ttl':'🛵 Skip delivery — come pick up fresh!',
+    'pickup-addr':'📌 Parupalliveedhi, Siddipet, Telangana 502103<br>📞 9553199868',
+  },
+  te: {
+    'h-tag':'సిద్దిపేట్ అందరికీ ఇష్టమైన ఐస్ క్రీమ్','h-title':'ఆనందపు\nస్కూప్','h-sub':'అరుణ్ ఐస్ క్రీమ్లు రాపిడో ద్వారా తాజాగా డెలివరీ 🛵','h-cta':'ఇప్పుడే ఆర్డర్ చేయండి 🍦','h-cta2':'పికప్ సమాచారం 📍',
+    'sp-ttl':'నేటి','logo-name':'సాయి భవాని అరుణ్','logo-sub':'ఐస్ క్రీమ్స్ · సిద్దిపేట్',
+    'n-home':'హోమ్','n-menu':'మెను','n-cart':'కార్ట్','n-orders':'ఆర్డర్లు','n-contact':'సంప్రదించు',
+    'cart-ttl-txt':'🛒 మీ కార్ట్','modal-ttl':'ఆర్డర్ చేయండి',
+    'pickup-ttl':'🛵 డెలివరీ వద్దు — నేరుగా మా దుకాణానికి రండి!',
+    'pickup-addr':'📌 పరుపల్లివీధి, సిద్దిపేట్, తెలంగాణ 502103<br>📞 9553199868',
+  }
+};
+
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.trim() === (l==='en'?'EN':'తె')));
+  Object.entries(T[l]).forEach(([id, val]) => {
+    const el = document.getElementById(id);
+    if (el) { if (val.includes('<br>')) el.innerHTML = val; else el.textContent = val; }
+  });
+  renderCategories();
+  renderMenu(activeCat, document.getElementById('search-inp').value);
+}
+
+// ═══════════════════════════════════════════════
+// OPEN / CLOSED LOGIC
+// ═══════════════════════════════════════════════
+function isShopOpen() {
+  const now = new Date();
+  const h = now.getHours(), m = now.getMinutes();
+  const mins = h * 60 + m;
+  return (mins >= 660 && mins <= 765) || (mins >= 1020 && mins <= 1260);
+}
+
+function checkOpen() {
+  const open = isShopOpen();
+  updateOpenBadge(open);
+  if (!open) {
+    const now = new Date();
+    const h = now.getHours();
+    let msg = 'We\'ll be back soon! Timings: 11AM–2:45PM & 5PM–9PM';
+    if (h < 11) msg = `Opens at 11:00 AM today! Come back soon 🍦`;
+    else if (h >= 15 && h < 17) msg = `Opens again at 5:00 PM today! 🍦`;
+    else if (h >= 21) msg = `Opens tomorrow at 11:00 AM! 🌅`;
+    document.getElementById('closed-msg').innerHTML = msg + '<br><br>🕐 11:00 AM – 2:45 PM<br>🕔 5:00 PM – 9:00 PM';
+    document.getElementById('closed-ov').style.display = 'flex';
+  }
+}
+
+function updateOpenBadge(open) {
+  const badge = document.getElementById('open-badge');
+  const txt = document.getElementById('open-txt');
+  badge.className = 'open-badge ' + (open ? 'open' : 'closed');
+  txt.textContent = open ? (lang === 'te' ? 'తెరిచి ఉంది' : 'Open') : (lang === 'te' ? 'మూసివుంది' : 'Closed');
+}
+
+// ═══════════════════════════════════════════════
+// THEME
+// ═══════════════════════════════════════════════
+function setTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  document.querySelectorAll('.t-opt').forEach(o => o.classList.remove('active'));
+  document.getElementById('t-' + t)?.classList.add('active');
+  localStorage.setItem('theme', t);
+  closeTheme();
+  showToast('Theme updated! 🎨');
+}
+
+function openTheme() { document.getElementById('theme-overlay').classList.add('open'); }
+function closeTheme(e) { if (!e || e.target === document.getElementById('theme-overlay')) document.getElementById('theme-overlay').classList.remove('open'); }
+
+// ═══════════════════════════════════════════════
+// CATEGORIES
+// ═══════════════════════════════════════════════
+function renderCategories() {
+  const wrap = document.getElementById('cats-scroll');
+  wrap.innerHTML = MENU.categories.map(c => `
+    <button class="cat-btn ${activeCat === c.id ? 'active' : ''}" onclick="filterCat('${c.id}',this)">
+      <div class="cat-emo">${c.emoji}</div>
+      <div class="cat-nm">${lang === 'te' ? c.te : c.name}</div>
+    </button>`).join('');
+}
+
+function filterCat(id, btn) {
+  activeCat = id;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMenu(id, document.getElementById('search-inp').value);
+}
+
+// ═══════════════════════════════════════════════
+// MENU RENDER
+// ═══════════════════════════════════════════════
+function renderMenu(cat = 'all', search = '') {
+  const grid = document.getElementById('menu-grid');
+  let items = MENU.items;
+  if (cat !== 'all') items = items.filter(i => i.cat === cat);
+  if (search) items = items.filter(i => (i.name + ' ' + i.te).toLowerCase().includes(search.toLowerCase()));
+  document.getElementById('no-res').style.display = items.length ? 'none' : 'block';
+  grid.innerHTML = items.map(item => {
+    const inCart = cart.find(c => c.id === item.id);
+    const qty = inCart ? inCart.qty : 0;
+    return `
+    <div class="m-card ${item.oos ? 'oos' : ''}" id="card-${item.id}">
+      <div class="card-img" style="background:${item.bg}">
+        <div class="prod-emoji">${item.emoji}</div>
+        ${item.size ? `<div class="size-badge">${item.size}</div>` : ''}
+        ${item.best ? `<div class="bs-badge">⭐ Best</div>` : ''}
+        ${item.oos ? `<div class="oos-ov">OUT OF STOCK</div>` : ''}
+      </div>
+      <div class="card-body">
+        <div class="card-nm">${lang === 'te' ? item.te : item.name}</div>
+        <div class="card-foot">
+          <div class="card-price">₹${item.price}<small>${item.size ? ' / ' + item.size : ''}</small></div>
+          ${qty === 0
+            ? `<button class="add-btn" onclick="addToCart('${item.id}')" ${item.oos ? 'disabled' : ''}>+</button>`
+            : `<div class="qty-ctrl">
+                <button class="qty-b" onclick="changeQty('${item.id}',-1)">−</button>
+                <span class="qty-n">${qty}</span>
+                <button class="qty-b" onclick="changeQty('${item.id}',1)">+</button>
+               </div>`
+          }
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // upsell
+  const existing = document.getElementById('upsell-banner');
+  if (existing) existing.remove();
+  if (cart.length > 0 && cart.length < 3) {
+    const totalInCart = cart.reduce((a, c) => a + c.price * c.qty, 0);
+    const suggestions = MENU.items.filter(i => !cart.find(c => c.id === i.id) && (cat === 'all' || i.cat === cat)).slice(0, 1);
+    if (suggestions.length) {
+      const banner = document.createElement('div');
+      banner.className = 'upsell'; banner.id = 'upsell-banner';
+      banner.innerHTML = `<div class="upsell-e">${suggestions[0].emoji}</div><div class="upsell-t">Customers also ordered: <strong>${suggestions[0].name}</strong> for ₹${suggestions[0].price}!<br><span onclick="addToCart('${suggestions[0].id}')" style="cursor:pointer;text-decoration:underline;color:var(--primary-d)">Add to cart →</span></div>`;
+      grid.prepend(banner);
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════
+// CART MANAGEMENT
+// ═══════════════════════════════════════════════
+function addToCart(id) {
+  const item = MENU.items.find(i => i.id === id);
+  if (!item || item.oos) return;
+  const existing = cart.find(c => c.id === id);
+  if (existing) existing.qty++;
+  else cart.push({ ...item, qty: 1, note: '' });
+  updateCartCount();
+  renderMenu(activeCat, document.getElementById('search-inp').value);
+  showToast(`${item.emoji} Added to cart!`);
+}
+
+function changeQty(id, delta) {
+  const idx = cart.findIndex(c => c.id === id);
+  if (idx === -1) return;
+  cart[idx].qty += delta;
+  if (cart[idx].qty <= 0) cart.splice(idx, 1);
+  updateCartCount();
+  renderMenu(activeCat, document.getElementById('search-inp').value);
+  if (document.getElementById('cart-drawer').classList.contains('open')) renderCartDrawer();
+}
+
+function updateCartCount() {
+  const total = cart.reduce((a, c) => a + c.qty, 0);
+  document.getElementById('cart-count').textContent = total;
+}
+
+function cartTotal() {
+  let sub = cart.reduce((a, c) => a + c.price * c.qty, 0);
+  if (redeemed && loyaltyPts >= 50) sub -= 10;
+  return sub;
+}
+
+function openCart() {
+  if (document.getElementById('cart-ov').classList.contains('open')) return;
+  document.getElementById('cart-ov').classList.add('open');
+  document.getElementById('cart-drawer').classList.add('open');
+  renderCartDrawer();
+}
+
+function closeCart(e) { if (e.target === document.getElementById('cart-ov')) closeCartDrawer(); }
+function closeCartDrawer() {
+  document.getElementById('cart-ov').classList.remove('open');
+  document.getElementById('cart-drawer').classList.remove('open');
+}
+
+function renderCartDrawer() {
+  const el = document.getElementById('cart-content');
+  if (cart.length === 0) {
+    const hasLast = localStorage.getItem('lastOrder');
+    el.innerHTML = `<div class="empty-cart">
+      <div class="empty-cart-e">🛒</div>
+      <div style="font-weight:700;font-size:14px">Your cart is empty</div>
+      <div style="font-size:12px;color:var(--text-l);margin-top:5px">Add some delicious ice creams!</div>
+      ${hasLast ? `<button onclick="loadRepeatOrder()" style="margin-top:14px;background:var(--primary);color:#fff;border:none;padding:10px 20px;border-radius:50px;font-weight:800;font-size:13px;cursor:pointer">🔄 Repeat Last Order</button>` : ''}
+    </div>`;
+    return;
+  }
+  const sub = cart.reduce((a, c) => a + c.price * c.qty, 0);
+  const disc = redeemed && loyaltyPts >= 50 ? 10 : 0;
+  const total = sub - disc;
+  el.innerHTML = `
+    <div class="cart-items-wrap">
+      ${cart.map(item => `
+        <div class="cart-item">
+          <div class="ci-emo" style="background:${item.bg};overflow:hidden;padding:0">
+            ${item.img
+              ? `<img src="${item.img}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover" onerror="this.parentElement.innerHTML='<span style=font-size:22px>${item.emoji}</span>'">`
+              : `<span style="font-size:22px">${item.emoji}</span>`}
+          </div>
+          <div class="ci-info">
+            <div class="ci-nm">${lang === 'te' ? item.te : item.name}</div>
+            <div class="qty-ctrl" style="margin-top:5px">
+              <button class="qty-b" onclick="changeQty('${item.id}',-1)">−</button>
+              <span class="qty-n">${item.qty}</span>
+              <button class="qty-b" onclick="changeQty('${item.id}',1)">+</button>
+            </div>
+            <input class="note-inp" placeholder="Add note (less sweet, etc.)" value="${item.note}" oninput="setNote('${item.id}',this.value)">
+          </div>
+          <div class="ci-price">₹${item.price * item.qty}</div>
+        </div>`).join('')}
+    </div>
+    ${loyaltyPts >= 50 ? `
+    <div class="loyalty-bar">
+      <div class="lb-top">
+        <div class="lb-pts">⭐ You have ${loyaltyPts} points (= ₹${Math.floor(loyaltyPts/50)*10} off)</div>
+        <button class="redeem-btn" onclick="toggleRedeem()">${redeemed ? 'Remove' : 'Redeem 50pts = ₹10'}</button>
+      </div>
+      <div style="font-size:11px;color:var(--text-l);font-weight:600">${redeemed ? '✅ ₹10 discount applied!' : 'Tap to redeem your loyalty points'}</div>
+    </div>` : loyaltyPts > 0 ? `
+    <div class="loyalty-bar">
+      <div class="lb-pts">⭐ You have ${loyaltyPts} points (need 50 to redeem)</div>
+      <div style="font-size:11px;color:var(--text-l);font-weight:600;margin-top:4px">Keep ordering to earn more!</div>
+    </div>` : ''}
+    <div class="cart-tot">
+      <div class="tot-row"><div class="tot-lbl">Subtotal</div><div class="tot-val">₹${sub}</div></div>
+      ${disc ? `<div class="tot-row"><div class="tot-lbl" style="color:var(--primary)">Points Discount</div><div class="tot-val" style="color:var(--primary)">-₹${disc}</div></div>` : ''}
+      <div class="tot-row tot-grand"><div class="tot-lbl">Total</div><div class="tot-val">₹${total}</div></div>
+      <button class="checkout-btn" onclick="startOrder()">Proceed to Order 🛒</button>
+      <div style="font-size:11px;text-align:center;color:var(--text-l);margin-top:9px;font-weight:600">💚 Pay on Delivery · Rapido fare charged separately</div>
+    </div>`;
+}
+
+function setNote(id, val) { const item = cart.find(c => c.id === id); if (item) item.note = val; }
+function toggleRedeem() { redeemed = !redeemed; renderCartDrawer(); }
+
+// ═══════════════════════════════════════════════
+// FLAVOUR OF THE WEEK
+// ═══════════════════════════════════════════════
+const FOTW_IDS = ['cn1','t2','s1','c1','sw2']; // admin can change via Firebase
+function renderFOTW() {
+  const wrap = document.getElementById('fotw-scroll');
+  const items = FOTW_IDS.map(id => MENU.items.find(i => i.id === id)).filter(Boolean);
+  wrap.innerHTML = items.map(item => `
+    <div onclick="addToCart('${item.id}')" style="flex-shrink:0;width:130px;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px var(--shadow);cursor:pointer;transition:transform .3s;background:var(--card)" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+      <div style="height:90px;background:${item.bg};display:flex;align-items:center;justify-content:center;font-size:44px;position:relative">
+        ${item.emoji}
+        <div style="position:absolute;top:6px;left:6px;background:rgba(255,255,255,.25);color:#fff;font-size:8.5px;font-weight:800;padding:2px 7px;border-radius:8px;letter-spacing:.5px">🔥 WEEK</div>
+      </div>
+      <div style="padding:8px 9px">
+        <div style="font-size:11.5px;font-weight:800;line-height:1.3;margin-bottom:4px;color:var(--text)">${item.name}</div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:14px;font-weight:900;color:var(--primary)">₹${item.price}</span>
+          <span style="font-size:18px;font-weight:700;color:var(--primary)">+</span>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════════════════
+// TOP RATED
+// ═══════════════════════════════════════════════
+async function renderTopRated() {
+  const wrap = document.getElementById('toprated-scroll');
+  // Try to get from Firebase reviews, fallback to best sellers
+  let topItems = MENU.items.filter(i => i.best).slice(0, 5);
+  try {
+    if (window._db && window._fs) {
+      const snap = await window._fs.getDocs(window._fs.collection(window._db, 'reviews'));
+      const ratings = {};
+      snap.forEach(d => {
+        const r = d.data();
+        if (!ratings[r.itemId]) ratings[r.itemId] = { total: 0, count: 0 };
+        ratings[r.itemId].total += r.stars || 5;
+        ratings[r.itemId].count++;
+      });
+      const sorted = Object.entries(ratings).sort((a,b) => (b[1].total/b[1].count) - (a[1].total/a[1].count)).slice(0,5);
+      if (sorted.length >= 3) {
+        topItems = sorted.map(([id]) => MENU.items.find(i => i.id === id)).filter(Boolean);
+      }
+    }
+  } catch(e) {}
+  wrap.innerHTML = topItems.map((item, idx) => `
+    <div onclick="addToCart('${item.id}')" style="flex-shrink:0;width:130px;border-radius:16px;overflow:hidden;box-shadow:0 4px 16px var(--shadow);cursor:pointer;transition:transform .3s;background:var(--card)" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+      <div style="height:90px;background:${item.bg};display:flex;align-items:center;justify-content:center;font-size:44px;position:relative">
+        ${item.emoji}
+        <div style="position:absolute;top:6px;left:6px;background:rgba(255,215,0,.9);color:#5D4037;font-size:8.5px;font-weight:800;padding:2px 7px;border-radius:8px">${['🥇','🥈','🥉','4️⃣','5️⃣'][idx]}</div>
+      </div>
+      <div style="padding:8px 9px">
+        <div style="font-size:11.5px;font-weight:800;line-height:1.3;margin-bottom:4px;color:var(--text)">${item.name}</div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:14px;font-weight:900;color:var(--primary)">₹${item.price}</span>
+          <span style="font-size:10px;color:#FFD700;font-weight:700">⭐⭐⭐⭐⭐</span>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════════════════
+// REPEAT ORDER
+// ═══════════════════════════════════════════════
+function saveLastOrder() {
+  try { localStorage.setItem('lastOrder', JSON.stringify(cart.map(i => ({id:i.id, qty:i.qty, note:i.note})))); } catch(e) {}
+}
+
+function loadRepeatOrder() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('lastOrder') || '[]');
+    if (!saved.length) { showToast('No previous order found'); return; }
+    cart = [];
+    saved.forEach(s => {
+      const item = MENU.items.find(i => i.id === s.id);
+      if (item) cart.push({ ...item, qty: s.qty, note: s.note || '' });
+    });
+    updateCartCount();
+    renderMenu(activeCat, '');
+    openCart();
+    showToast('🔄 Last order loaded!');
+  } catch(e) { showToast('Could not load last order'); }
+}
+
+// ═══════════════════════════════════════════════
+// LOW STOCK WHATSAPP ALERT
+// ═══════════════════════════════════════════════
+async function checkLowStock() {
+  if (!window._db || !window._fs) return;
+  try {
+    const snap = await window._fs.getDocs(window._fs.collection(window._db, 'products'));
+    const lowItems = [];
+    snap.forEach(d => {
+      const p = d.data();
+      if ((p.stock !== undefined) && p.stock <= 5 && !p.oos) {
+        lowItems.push(`⚠️ ${p.emoji || '🍦'} ${p.name} — only ${p.stock} left`);
+      }
+    });
+    if (lowItems.length) {
+      const msg = `🚨 *Low Stock Alert — Sai Bhavani Arun Ice Creams*\n\n${lowItems.join('\n')}\n\nPlease restock these items soon!`;
+      // Store alert in Firebase so admin can see it
+      await window._fs.setDoc(window._fs.doc(window._db,'settings','lowStockAlert'),{
+        items: lowItems, checkedAt: window._fs.serverTimestamp(), sent: false
+      });
+    }
+  } catch(e) {}
+}
+
+
+const specialItem = MENU.items.find(i => i.id === 'cn1');
+function setTodaySpecial(item) {
+  document.getElementById('sp-name').textContent = lang === 'te' ? item.te : item.name;
+  document.getElementById('sp-price').textContent = '₹' + item.price;
+  document.getElementById('special-card').style.background = item.bg;
+  document.getElementById('sp-emoji').textContent = item.emoji;
+}
+setTodaySpecial(specialItem);
+
+function addSpecialToCart() { addToCart(specialItem.id); closeCartDrawer(); }
+
+// ═══════════════════════════════════════════════
+// SEARCH
+// ═══════════════════════════════════════════════
+function onSearch(val) {
+  document.getElementById('clear-search').hidden = !val;
+  renderMenu(activeCat, val);
+}
+function clearSearch() {
+  document.getElementById('search-inp').value = '';
+  document.getElementById('clear-search').hidden = true;
+  renderMenu(activeCat, '');
+}
+
+// ═══════════════════════════════════════════════
+// ORDER FLOW (Multi-step)
+// ═══════════════════════════════════════════════
+function startOrder() {
+  if (cart.length === 0) { showToast('Add items first!'); return; }
+  closeCartDrawer();
+  orderData = {};
+  currentStep = 1;
+  document.getElementById('modal-ov').classList.add('open');
+  renderStep();
+}
+
+function closeModal() { document.getElementById('modal-ov').classList.remove('open'); }
+
+function renderStepIndicator(total) {
+  document.getElementById('steps-ind').innerHTML = Array.from({length: total}, (_,i) =>
+    `<div class="step-d ${i < currentStep ? 'active' : ''}"></div>`).join('');
+}
+
+function renderStep() {
+  renderStepIndicator(4);
+  const body = document.getElementById('modal-body');
+  if (currentStep === 1) {
+    document.getElementById('modal-ttl').textContent = '👤 Your Details';
+    body.innerHTML = `
+      <div class="form-grp">
+        <label class="form-lbl">Your Name *</label>
+        <input class="form-inp" id="f-name" placeholder="Enter your name" value="${orderData.name || ''}">
+      </div>
+      <div class="form-grp">
+        <label class="form-lbl">Phone Number *</label>
+        <input class="form-inp" id="f-phone" type="tel" maxlength="10" placeholder="10-digit mobile number" value="${orderData.phone || ''}">
+      </div>
+      <button class="checkout-btn" onclick="step1Next()">Next →</button>`;
+    document.getElementById('f-phone')?.addEventListener('blur', async () => {
+      const ph = document.getElementById('f-phone').value;
+      if (ph.length === 10 && window._getCustomer) {
+        const cust = await window._getCustomer(ph);
+        if (cust) {
+          loyaltyPts = cust.points || 0;
+          if (cust.name && !document.getElementById('f-name').value) document.getElementById('f-name').value = cust.name;
+          if (loyaltyPts > 0) showToast(`⭐ Welcome back! You have ${loyaltyPts} points`);
+        }
+      }
+    });
+  } else if (currentStep === 2) {
+    document.getElementById('modal-ttl').textContent = '🚚 Delivery or Pickup?';
+    body.innerHTML = `
+      <div class="del-opts">
+        <div class="del-opt ${orderData.delivery === 'delivery' ? 'sel' : ''}" onclick="selectDel('delivery',this)">
+          <div class="del-opt-e">🛵</div>
+          <div class="del-opt-t">Home Delivery</div>
+          <div class="del-opt-d">We book Rapido for you.<br>Rapido fare charged separately.</div>
+        </div>
+        <div class="del-opt ${orderData.delivery === 'pickup' ? 'sel' : ''}" onclick="selectDel('pickup',this)">
+          <div class="del-opt-e">🏪</div>
+          <div class="del-opt-t">Pickup</div>
+          <div class="del-opt-d">Visit our shop at Parupalliveedhi, Siddipet. No charges!</div>
+        </div>
+      </div>
+      <div id="addr-section" style="${orderData.delivery === 'pickup' ? 'display:none' : ''}">
+        <div class="form-grp">
+          <label class="form-lbl">Delivery Address *</label>
+          <textarea class="form-inp" id="f-addr" rows="3" placeholder="House no, Street, Area, Landmark...">${orderData.address || ''}</textarea>
+        </div>
+      </div>
+      <div style="display:flex;gap:9px;margin-top:4px">
+        <button class="checkout-btn" style="background:var(--bg);color:var(--text)" onclick="currentStep--;renderStep()">← Back</button>
+        <button class="checkout-btn" onclick="step2Next()">Next →</button>
+      </div>`;
+  } else if (currentStep === 3) {
+    document.getElementById('modal-ttl').textContent = '📋 Order Summary';
+    const sub = cart.reduce((a,c) => a + c.price * c.qty, 0);
+    const disc = redeemed && loyaltyPts >= 50 ? 10 : 0;
+    const total = sub - disc;
+    body.innerHTML = `
+      <div class="allergy">
+        <div class="al-ico">⚠️</div>
+        <div class="al-txt">
+          <strong>Allergy Notice:</strong> Some ice creams may contain nuts, dairy, or eggs. If you have food allergies, please call us before ordering.
+          <div class="al-chk">
+            <input type="checkbox" id="al-chk" ${orderData.allergyOk ? 'checked' : ''}>
+            <span>I understand & confirm my order</span>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--bg);border-radius:14px;padding:14px;margin-bottom:14px;border:1px solid var(--border)">
+        ${cart.map(item => `
+          <div style="display:flex;justify-content:space-between;padding:5px 0;font-size:13px;border-bottom:1px solid var(--border)">
+            <span>${item.emoji} ${lang === 'te' ? item.te : item.name} × ${item.qty}${item.note ? ` <em style="color:var(--text-l);font-size:11px">(${item.note})</em>` : ''}</span>
+            <strong>₹${item.price * item.qty}</strong>
+          </div>`).join('')}
+        ${disc ? `<div style="display:flex;justify-content:space-between;padding:5px 0;font-size:13px;color:var(--primary)"><span>⭐ Points discount</span><strong>-₹${disc}</strong></div>` : ''}
+        <div style="display:flex;justify-content:space-between;padding:8px 0 0;font-size:16px;font-weight:900;color:var(--primary)"><span>Total</span><span>₹${total}</span></div>
+      </div>
+      <div style="font-size:12.5px;color:var(--text-l);font-weight:600;margin-bottom:14px">
+        📍 <strong>${orderData.delivery === 'pickup' ? 'Pickup at shop' : orderData.address}</strong><br>
+        👤 ${orderData.name} | 📞 ${orderData.phone}
+      </div>
+      <div class="pod-tag">✅ Pay on Delivery</div>
+      <div style="display:flex;gap:9px;margin-top:14px">
+        <button class="checkout-btn" style="background:var(--bg);color:var(--text)" onclick="currentStep--;renderStep()">← Back</button>
+        <button class="checkout-btn" onclick="step3Next()">Confirm Order 🎉</button>
+      </div>`;
+  } else if (currentStep === 4) {
+    const oid = orderData.orderId || '#' + Math.floor(1000 + Math.random() * 9000);
+    orderData.orderId = oid;
+    const earned = Math.floor(cartTotal() / 10);
+    document.getElementById('modal-ttl').textContent = '🎉 Order Placed!';
+    body.innerHTML = `
+      <div class="confirm-screen">
+        <div class="confirm-ico">✅</div>
+        <div class="oid-badge">${oid}</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:6px">Order placed successfully!</div>
+        <div class="pts-badge">🌟 You earned ${earned} points on this order!</div>
+        <div class="call-badge">
+          <div class="call-badge-ttl">📞 One Last Step!</div>
+          <div class="call-badge-txt">Please call us to confirm your order.<br>We will book Rapido for delivery right away!</div>
+          <a href="tel:9553199868" class="call-now-btn">📞 Call Now — 9553199868</a>
+        </div>
+        <div class="rapido-note">🛵 After your confirmation call, we will book a Rapido rider. The Rapido fare will be charged separately at the time of delivery.<br><br>💚 <strong>Pay on Delivery</strong> — no online payment needed.</div>
+        <div class="pod-tag" style="margin-top:10px">✅ Your order ID: <strong>${oid}</strong> — Track anytime</div>
+        <button class="checkout-btn" style="margin-top:14px" onclick="showBill()">📄 View Digital Bill</button>
+        <button onclick="sendWhatsApp()" style="width:100%;margin-top:9px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border:none;padding:13px;border-radius:13px;font-weight:800;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px">💬 Also Confirm via WhatsApp</button>
+        <button onclick="closeModal();cart=[];updateCartCount();renderMenu(activeCat,'');" style="width:100%;margin-top:9px;background:var(--bg);color:var(--text);border:1px solid var(--border);padding:12px;border-radius:13px;font-weight:700;font-size:13px;cursor:pointer">Done — Browse More 🍦</button>
+      </div>`;
+    // Save to Firebase
+    if (window._saveOrder) {
+      window._saveOrder({
+        orderId: oid, customerName: orderData.name, phone: orderData.phone,
+        address: orderData.address || 'Pickup', delivery: orderData.delivery,
+        items: cart.map(i => ({ id:i.id, name:i.name, qty:i.qty, price:i.price, note:i.note })),
+        total: cartTotal(), status: 'received', loyaltyRedeemed: redeemed ? 10 : 0
+      });
+    }
+    // Save last order for repeat
+    saveLastOrder();
+    // Check low stock
+    checkLowStock();
+    // Auto WhatsApp
+    sendWhatsApp(true);
+  }
+}
+
+function step1Next() {
+  const name = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  if (!name) { showToast('Please enter your name'); return; }
+  if (phone.length !== 10 || isNaN(phone)) { showToast('Please enter valid 10-digit number'); return; }
+  orderData.name = name; orderData.phone = phone;
+  currentStep = 2; renderStep();
+}
+
+function selectDel(type, el) {
+  orderData.delivery = type;
+  document.querySelectorAll('.del-opt').forEach(o => o.classList.remove('sel'));
+  el.classList.add('sel');
+  document.getElementById('addr-section').style.display = type === 'pickup' ? 'none' : 'block';
+}
+
+function step2Next() {
+  if (!orderData.delivery) { showToast('Select delivery or pickup'); return; }
+  if (orderData.delivery === 'delivery') {
+    const addr = document.getElementById('f-addr').value.trim();
+    if (!addr) { showToast('Please enter your address'); return; }
+    orderData.address = addr;
+  }
+  currentStep = 3; renderStep();
+}
+
+function step3Next() {
+  if (!document.getElementById('al-chk').checked) { showToast('Please confirm the allergy notice'); return; }
+  orderData.allergyOk = true;
+  currentStep = 4; renderStep();
+}
+
+function sendWhatsApp(auto = false) {
+  const lines = cart.map(i => `• ${i.emoji} ${i.name} × ${i.qty} = ₹${i.price * i.qty}${i.note ? ` (${i.note})` : ''}`).join('\n');
+  const disc = redeemed && loyaltyPts >= 50 ? '\n🎁 Points Discount: -₹10' : '';
+  const msg = `🍦 *New Order — ${orderData.orderId}*\n\n*Customer:* ${orderData.name}\n*Phone:* ${orderData.phone}\n*Delivery:* ${orderData.delivery === 'pickup' ? '🏪 Pickup at shop' : `🛵 Home Delivery\n*Address:* ${orderData.address}`}\n\n*Items:*\n${lines}${disc}\n\n*Total:* ₹${cartTotal()}\n*Payment:* Pay on Delivery\n\n📞 Please confirm & book Rapido — 9553199868`;
+  const url = `https://wa.me/919553199868?text=${encodeURIComponent(msg)}`;
+  if (!auto) window.open(url, '_blank');
+}
+
+// ═══════════════════════════════════════════════
+// DIGITAL BILL
+// ═══════════════════════════════════════════════
+function showBill() {
+  document.getElementById('bill-oid').textContent = 'Order ' + orderData.orderId;
+  const disc = redeemed && loyaltyPts >= 50 ? 10 : 0;
+  const total = cartTotal();
+  document.getElementById('bill-items').innerHTML = `
+    <div class="bill-items">
+      ${cart.map(i => `<div class="bill-item"><span>${i.emoji} ${i.name} × ${i.qty}</span><span>₹${i.price * i.qty}</span></div>`).join('')}
+      ${disc ? `<div class="bill-item" style="color:var(--primary)"><span>⭐ Loyalty Discount</span><span>-₹${disc}</span></div>` : ''}
+    </div>`;
+  document.getElementById('bill-total').innerHTML = `<span>Total</span><span>₹${total}</span>`;
+  document.getElementById('bill-ov').classList.add('open');
+}
+
+function closeBill(e) { if (e.target === document.getElementById('bill-ov')) closeBillSheet(); }
+function closeBillSheet() { document.getElementById('bill-ov').classList.remove('open'); }
+
+// ═══════════════════════════════════════════════
+// ORDER TRACKING
+// ═══════════════════════════════════════════════
+async function trackOrder() {
+  const inp = document.getElementById('track-inp').value.trim().replace('#','');
+  if (!inp) { showToast('Enter your Order ID'); return; }
+  document.getElementById('track-hint').textContent = 'Looking up your order...';
+  document.getElementById('status-line').style.display = 'none';
+  if (window._getOrder) {
+    const order = await window._getOrder(inp);
+    if (order) {
+      renderStatus(order.status || 'received');
+      document.getElementById('track-hint').textContent = `Order ${order.orderId || '#' + inp} — ${order.customerName}`;
+    } else {
+      document.getElementById('track-hint').textContent = 'Order not found. Check your Order ID.';
+    }
+  } else {
+    document.getElementById('track-hint').textContent = 'Tracking unavailable offline.';
+  }
+}
+
+function renderStatus(status) {
+  const steps = [
+    { key:'received', emoji:'✅', label:'Order Received', sub:'Your order is confirmed' },
+    { key:'preparing', emoji:'🍦', label:'Being Prepared', sub:'We\'re making your ice cream!' },
+    { key:'booked', emoji:'🛵', label:'Rapido Booked', sub:'Rider is on the way!' },
+    { key:'delivered', emoji:'🎉', label:'Delivered', sub:'Enjoy your ice cream!' },
+  ];
+  const statusOrder = ['received','preparing','booked','delivered'];
+  const idx = statusOrder.indexOf(status);
+  const line = document.getElementById('status-line');
+  line.style.display = 'block';
+  line.innerHTML = steps.map((s, i) => `
+    <div class="s-step ${i < idx ? 'done' : ''} ${i === idx ? 'current' : ''}">
+      <div class="s-ico">${s.emoji}</div>
+      <div><div class="s-txt">${s.label}</div><div class="s-sub">${s.sub}</div></div>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════════════════
+// REVIEWS
+// ═══════════════════════════════════════════════
+function renderReviews() {
+  document.getElementById('reviews-list').innerHTML = REVIEWS.map(r => `
+    <div class="rev-card">
+      <div class="rev-hdr">
+        <div class="rev-av">${r.init}</div>
+        <div><div class="rev-nm">${r.name}</div><div class="rev-stars">${'⭐'.repeat(r.stars)}</div></div>
+      </div>
+      <div class="rev-txt">${r.text}</div>
+      <div style="font-size:10.5px;color:var(--primary);margin-top:6px;font-weight:700">${r.item}</div>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════
+function navTo(id, btn) {
+  document.querySelectorAll('.nav-it').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+}
+
+function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function scrollToMenu() { document.getElementById('menu').scrollIntoView({ behavior: 'smooth' }); }
+function scrollToPickup() { document.getElementById('pickup').scrollIntoView({ behavior: 'smooth' }); }
+
+// ═══════════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════════
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ═══════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════
+function init() {
+  const savedTheme = localStorage.getItem('theme') || 'pink';
+  setTheme(savedTheme);
+  checkOpen();
+  renderCategories();
+  renderMenu('all', '');
+  renderReviews();
+  renderFOTW();
+  renderTopRated();
+  setInterval(checkOpen, 60000);
+}
+
+init();
+</script>
+</body>
+</html>
